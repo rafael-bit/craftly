@@ -11,6 +11,16 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "#d1d5db",
+        hover: "#f3f4f6",
+        secondary: "#9ca3af",
+      },
+
+      backgroundColor: {
+        primary: "#0d0d0d",
+        hover: "#111012",
+        light: "#161417",
+        lightHover: "#1a181c"
       },
     },
   },
