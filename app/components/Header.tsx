@@ -13,29 +13,13 @@ import {
 	PopoverPanel,
 } from '@headlessui/react'
 import {
-	ArrowPathIcon,
 	Bars3Icon,
-	ChartPieIcon,
-	CursorArrowRaysIcon,
-	FingerPrintIcon,
-	SquaresPlusIcon,
 	XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
 import Link from 'next/link'
-
-const products = [
-	{ name: 'Header', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
-	{ name: 'Aside', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-	{ name: 'Form', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
-	{ name: 'Button', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-	{ name: 'Footer', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
-]
-const callsToAction = [
-	{ name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-	{ name: 'About Us', href: '#', icon: PhoneIcon },
-]
+import { products, callsToAction } from '@/constants/header'
 
 export default function Header() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -46,7 +30,7 @@ export default function Header() {
 	}, []);
 
 	return (
-		<header className="bg-primary bg-opacity-20 backdrop-blur-lg w-[95%] border border-gray-700 mx-auto rounded-3xl m-5">
+		<header className="fixed bg-primary bg-opacity-20 backdrop-blur-lg w-[95%] border border-gray-700 mx-auto rounded-3xl m-5">
 			<nav aria-label="Header" className="mx-auto flex max-w-7xl items-center justify-between p-1 lg:px-8">
 				<div className={`flex lg:flex-1 transition-transform duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
 					<Link href="#" className="-m-1.5 p-1.5 flex items-center gap-5">
@@ -125,8 +109,8 @@ export default function Header() {
 				</PopoverGroup>
 			</nav>
 			<Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
-				<div className="fixed inset-0 z-10" />
-				<DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+				<div className="inset-0 z-10" />
+				<DialogPanel className="inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
 					<div className="flex items-center justify-between">
 						<a href="#" className="-m-1.5 p-1.5">
 							<span className="sr-only">Craftly</span>
