@@ -31,8 +31,7 @@ export default function Footer() {
 			id="footer"
 			className={`bg-primary w-[95%] border border-gray-700 mx-auto rounded-3xl m-5 transition-opacity duration-[1500ms] ease-out transform ${isVisible ? 'opacity-100' : 'opacity-0'}`}
 		>
-			<div className="text-center lg:py-2 flex items-center justify-around">
-				{/* Logo com transição da esquerda */}
+			<div className="text-center py-1 flex items-center justify-around">
 				<Image
 					src="/logo.png"
 					alt="Craftly logo"
@@ -41,12 +40,11 @@ export default function Footer() {
 					className={`w-16 h-16 transition-transform duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}
 				/>
 
-				{/* Texto com transição de fade-in direto */}
 				<p className={`text-xs leading-5 text-gray-300 transition-opacity duration-1000 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-					&copy; 2024 Craftly. All rights reserved.
+					<span className="hidden sm:inline">&copy; 2024 Craftly. All rights reserved.</span>
+					<span className="sm:hidden">&copy; 2024 Craftly.</span>
 				</p>
 
-				{/* Link com transição da direita */}
 				<Link href="/privacy" className="flex flex-col items-center gap-2">
 					<Image
 						src="/github.png"

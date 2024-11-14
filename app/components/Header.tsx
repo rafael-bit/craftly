@@ -30,7 +30,7 @@ export default function Header() {
 	}, []);
 
 	return (
-		<header className="left-10 fixed bg-primary bg-opacity-20 backdrop-blur-lg w-[95%] border border-gray-700 mx-auto rounded-3xl m-5">
+		<header className="left-3 md:left-10 fixed bg-primary bg-opacity-20 backdrop-blur-lg w-[95%] border border-gray-700 mx-auto rounded-3xl m-5">
 			<nav aria-label="Header" className="mx-auto flex max-w-7xl items-center justify-between p-1 lg:px-8">
 				<div className={`flex lg:flex-1 transition-transform duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
 					<Link href="#" className="-m-1.5 p-1.5 flex items-center gap-5">
@@ -44,7 +44,7 @@ export default function Header() {
 						<h1 className="text-2xl font-bold text-primary hover:text-hover duration-300">Craftly</h1>
 					</Link>
 				</div>
-				<div className="flex lg:hidden">
+				<div className="flex sm:hidden mr-5">
 					<button
 						type="button"
 						onClick={() => setMobileMenuOpen(true)}
@@ -54,7 +54,7 @@ export default function Header() {
 						<Bars3Icon aria-hidden="true" className="size-6" />
 					</button>
 				</div>
-				<PopoverGroup className="hidden lg:flex lg:gap-x-12">
+				<PopoverGroup className="hidden sm:flex sm:gap-x-12 sm:mr-10">
 					<a href="/" className={`text-sm/6 font-semibold text-primary hover:text-hover duration-300 transition-opacity transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} delay-[0ms]`}>
 						Home
 					</a>
@@ -108,70 +108,42 @@ export default function Header() {
 
 				</PopoverGroup>
 			</nav>
-			<Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
-				<div className="inset-0 z-10" />
-				<DialogPanel className="inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-					<div className="flex items-center justify-between">
-						<a href="#" className="-m-1.5 p-1.5">
-							<span className="sr-only">Craftly</span>
-							<img
-								alt=""
-								src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-								className="h-8 w-auto"
-							/>
-						</a>
-						<button
-							type="button"
-							onClick={() => setMobileMenuOpen(false)}
-							className="-m-2.5 rounded-md p-2.5 text-gray-700"
-						>
-							<span className="sr-only">Close menu</span>
-							<XMarkIcon aria-hidden="true" className="size-6" />
-						</button>
-					</div>
-					<div className="mt-6 flow-root">
-						<div className="-my-6 divide-y divide-gray-500/10">
-							<div className="space-y-2 py-6">
-								<Disclosure as="div" className="-mx-3">
-									<DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-										Product
-										<ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
-									</DisclosureButton>
-									<DisclosurePanel className="mt-2 space-y-2">
-										{[...products, ...callsToAction].map((item) => (
-											<DisclosureButton
-												key={item.name}
-												as="a"
-												href={item.href}
-												className="block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
-											>
-												{item.name}
-											</DisclosureButton>
-										))}
-									</DisclosurePanel>
-								</Disclosure>
-								<a
-									href="#"
-									className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-								>
-									Features
-								</a>
-								<a
-									href="#"
-									className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-								>
-									Marketplace
-								</a>
-								<a
-									href="#"
-									className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-								>
-									Company
-								</a>
-							</div>
+			<Dialog open={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} className="fixed inset-0 z-10 bg-black bg-opacity-50">
+				<div className="fixed inset-0 z-20 flex items-start justify-end">
+					<DialogPanel className="w-full sm:max-w-xs bg-primary h-full px-6 py-6 overflow-y-auto">
+						<div className="flex items-center justify-between mb-6">
+							<Link href="#" className="-m-1.5 p-1.5">
+								<span className="sr-only">Craftly</span>
+								<Image src="/logo.png" alt="Craftly logo" width={65} height={65} />
+							</Link>
+							<button
+								type="button"
+								onClick={() => setMobileMenuOpen(false)}
+								className="-m-2.5 rounded-md p-2.5 text-primary hover:text-hover"
+							>
+								<span className="sr-only">Close menu</span>
+								<XMarkIcon aria-hidden="true" className="size-6" />
+							</button>
 						</div>
-					</div>
-				</DialogPanel>
+
+						<div className="space-y-3">
+							<Disclosure as="div">
+								<a href="#" className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Home</a>
+								<DisclosureButton className="w-full text-left text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover p-3">
+									Components <ChevronDownIcon aria-hidden="true" className="inline w-5 h-5 ml-1" />
+								</DisclosureButton>
+								<DisclosurePanel className="pl-6 space-y-2">
+									{[...products, ...callsToAction].map((item) => (
+										<Link key={item.name} href={item.href} className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">
+											{item.name}
+										</Link>
+									))}
+								</DisclosurePanel>
+							</Disclosure>
+							<a href="#" className="block px-3 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">About</a>
+						</div>
+					</DialogPanel>
+				</div>
 			</Dialog>
 		</header>
 	)
