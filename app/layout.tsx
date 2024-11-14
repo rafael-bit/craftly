@@ -24,10 +24,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} antialiased relative`}
       >
-        <div className="absolute top-0 right-0 w-56 h-72 bg-gradient-to-br from-white via-transparent to-transparent opacity-35 blur-3xl pointer-events-none"></div>
+        <div className="absolute top-0 -left-2 w-[60%] h-[600px] bg-gradient-to-br from-blue-400 via-transparent to-transparent opacity-50 blur-[120px] pointer-events-none"></div>
         <Header />
         {children}
-        <Footer />
+        <Footer />  
       </body>
     </html>
   );

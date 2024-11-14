@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
 	Dialog,
 	DialogPanel,
@@ -39,19 +39,25 @@ const callsToAction = [
 
 export default function Header() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+	const [isVisible, setIsVisible] = useState(false);
+
+	useEffect(() => {
+		setIsVisible(true);
+	}, []);
 
 	return (
 		<header className="bg-primary bg-opacity-20 backdrop-blur-lg w-[95%] border border-gray-700 mx-auto rounded-3xl m-5">
 			<nav aria-label="Header" className="mx-auto flex max-w-7xl items-center justify-between p-1 lg:px-8">
-				<div className="flex lg:flex-1">
-					<Link href="#" className="-m-1.5 p-1.5">
+				<div className={`flex lg:flex-1 transition-transform duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+					<Link href="#" className="-m-1.5 p-1.5 flex items-center gap-5">
 						<span className="sr-only">Craftly</span>
 						<Image
 							alt=""
 							src="/logo.png"
-							width={75}
-							height={75}
+							width={70}
+							height={70}
 						/>
+						<h1 className="text-2xl font-bold text-primary hover:text-hover duration-300">Craftly</h1>
 					</Link>
 				</div>
 				<div className="flex lg:hidden">
@@ -65,13 +71,13 @@ export default function Header() {
 					</button>
 				</div>
 				<PopoverGroup className="hidden lg:flex lg:gap-x-12">
-					<a href="/" className="text-sm/6 font-semibold text-primary hover:text-hover duration-300">
+					<a href="/" className={`text-sm/6 font-semibold text-primary hover:text-hover duration-300 transition-opacity transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} delay-[0ms]`}>
 						Home
 					</a>
 					<Popover className="relative">
-						<PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-primary hover:text-hover duration-300">
+						<PopoverButton className={`flex items-center gap-x-1 text-sm/6 font-semibold text-primary hover:text-hover duration-300 transition-opacity transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} delay-[150ms]`}>
 							Components
-							<ChevronDownIcon aria-hidden="true" className="size-5 flex-none text-gray-400" />
+							<ChevronDownIcon aria-hidden="true" className="size-5 flex-none" />
 						</PopoverButton>
 
 						<PopoverPanel
@@ -112,9 +118,10 @@ export default function Header() {
 						</PopoverPanel>
 					</Popover>
 
-					<a href="#" className="text-sm/6 font-semibold text-primary hover:text-hover duration-300">
+					<a href="#" className={`text-sm/6 font-semibold text-primary hover:text-hover duration-300 transition-opacity transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} delay-[300ms]`}>
 						About
 					</a>
+
 				</PopoverGroup>
 			</nav>
 			<Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
