@@ -55,11 +55,18 @@ export default function Header() {
 					</button>
 				</div>
 				<PopoverGroup className="hidden sm:flex sm:gap-x-12 sm:mr-10">
-					<a href="/" className={`text-sm/6 font-semibold text-primary hover:text-hover duration-300 transition-opacity transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} delay-[0ms]`}>
+					<Link
+						href="/"
+						className={`text-sm/6 font-semibold text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+							} delay-[50ms]`}
+					>
 						Home
-					</a>
+					</Link>
 					<Popover className="relative">
-						<PopoverButton className={`flex items-center gap-x-1 text-sm/6 font-semibold text-primary hover:text-hover duration-300 transition-opacity transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} delay-[150ms]`}>
+						<PopoverButton
+							className={`flex items-center gap-x-1 text-sm/6 font-semibold text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+								} delay-[50ms]`}
+						>
 							Components
 							<ChevronDownIcon aria-hidden="true" className="size-5 flex-none" />
 						</PopoverButton>
@@ -78,10 +85,10 @@ export default function Header() {
 											<item.icon aria-hidden="true" className="size-6 text-gray-600 group-hover:text-blue-700" />
 										</div>
 										<div className="flex-auto">
-											<a href={item.href} className="block font-semibold text-primary">
+											<Link href={item.href} className="block font-semibold text-primary">
 												{item.name}
 												<span className="absolute inset-0" />
-											</a>
+											</Link>
 											<p className="mt-1 text-gray-400">{item.description}</p>
 										</div>
 									</div>
@@ -89,23 +96,25 @@ export default function Header() {
 							</div>
 							<div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-primary">
 								{callsToAction.map((item) => (
-									<a
+									<Link
 										key={item.name}
 										href={item.href}
 										className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-primary hover:text-blue-600 hover:bg-hover"
 									>
 										<item.icon aria-hidden="true" className="size-5 flex-none text-blue-600" />
 										{item.name}
-									</a>
+									</Link>
 								))}
 							</div>
 						</PopoverPanel>
 					</Popover>
-
-					<a href="#" className={`text-sm/6 font-semibold text-primary hover:text-hover duration-300 transition-opacity transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} delay-[300ms]`}>
+					<Link
+						href="#"
+						className={`text-sm/6 font-semibold text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+							} delay-[50ms]`}
+					>
 						About
-					</a>
-
+					</Link>
 				</PopoverGroup>
 			</nav>
 			<Dialog open={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} className="fixed inset-0 z-10 bg-black bg-opacity-50">
@@ -140,7 +149,7 @@ export default function Header() {
 									))}
 								</DisclosurePanel>
 							</Disclosure>
-							<a href="#" className="block px-3 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">About</a>
+							<Link href="#" className="block px-3 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">About</Link>
 						</div>
 					</DialogPanel>
 				</div>
