@@ -30,7 +30,7 @@ export default function Header() {
 	}, []);
 
 	return (
-		<header className="left-3 md:left-10 fixed bg-primary bg-opacity-20 backdrop-blur-lg w-[95%] border border-primary mx-auto rounded-3xl m-5 top-0  bg-primary/25 shadow-md z-50">
+		<header className="left-2 xs:left-3 md:left-5 lg:left-10 fixed bg-primary bg-opacity-20 backdrop-blur-lg w-[95%] border border-primary mx-auto rounded-3xl m-5 top-0  bg-primary/25 shadow-md z-50">
 			<nav aria-label="Header" className="mx-auto flex max-w-7xl items-center justify-between p-1 lg:px-8">
 				<div className={`flex lg:flex-1 transition-transform duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
 					<Link href="#" className="-m-1.5 p-1.5 flex items-center gap-5">
@@ -38,8 +38,8 @@ export default function Header() {
 						<Image
 							alt=""
 							src="/logo.png"
-							width={70}
-							height={70}
+							width={65}
+							height={65}
 						/>
 						<h1 className="text-2xl font-bold text-primary hover:text-hover duration-300">Craftly</h1>
 					</Link>

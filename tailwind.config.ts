@@ -28,6 +28,10 @@ export default {
         light: "#161417",
         lightHover: "#1a181c"
       },
+
+      screens: {
+        xs: "450px",
+      },
     },
   },
   plugins: [],
