@@ -29,7 +29,7 @@ export default function Footer() {
 	return (
 		<footer
 			id="footer"
-			className={`bg-primary w-[95%] border border-primary mx-auto rounded-3xl m-5 transition-opacity duration-[1500ms] ease-out transform ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+			className={`bg-primary w-[95%] mx-auto rounded-3xl m-5 transition-opacity duration-[1500ms] ease-out transform shadow-xl ${isVisible ? 'opacity-100' : 'opacity-0'}`}
 		>
 			<div className="text-center py-1 flex items-center justify-around">
 				<Image
