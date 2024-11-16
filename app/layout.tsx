@@ -12,6 +12,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Craftly",
   description: "Program to build yours components with ease",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -26,8 +29,10 @@ export default function RootLayout({
       >
         <div className="absolute top-0 -left-2 w-[60%] h-[600px] bg-gradient-to-br from-blue-400 via-transparent to-transparent opacity-50 blur-[120px] pointer-events-none"></div>
         <Header />
-        {children}
-        <Footer />  
+        <div>
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   );

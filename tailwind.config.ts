@@ -16,6 +16,12 @@ export default {
         secondary: "#9ca3af",
       },
 
+      borderColor: {
+        primary: "#374151",
+        hover: "#f3f4f6",
+        secondary: "#f3f4f6",
+      },
+
       backgroundColor: {
         primary: "#0d0d0d",
         hover: "#111012",
