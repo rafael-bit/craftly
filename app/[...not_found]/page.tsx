@@ -22,16 +22,16 @@ const NotFound = () => {
 					className="text-center opacity-0 animate-fade-in"
 					style={{ animation: "fade-in 1s forwards" }}
 				>
-					<h1 className="text-7xl xs:text-9xl font-bold mb-4 animate-text bg-gradient-to-r from-blue-700 via-blue-900 to-blue-950 bg-clip-text text-transparent">
+					<h1 className="text-8xl xs:text-9xl font-bold mb-4 animate-text bg-gradient-to-r from-blue-700 via-blue-900 to-blue-950 bg-clip-text text-transparent">
 						404
 					</h1>
-					<p className="text-lg md:text-xl text-gray-300">
+					<p className="text-base md:text-xl text-gray-300">
 						Oops! Page not found.
 					</p>
-					<p className="mt-4 text-sm text-gray-500">
+					<p className="mt-2 md:mt-4 text-sm text-gray-500">
 						It looks like you got lost in space...
 					</p>
-					<div className="mt-6">
+					<div className="mt-16">
 						<a
 							href="/"
 								className="px-6 py-3 animate-text bg-gradient-to-r from-blue-700 via-blue-900 to-blue-950 text-white rounded-full shadow-lg transition-all duration-300"
