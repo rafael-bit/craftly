@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.1.5",
+    "craftly": "^1.1.0",
     "dotenv": "^16.4.5",
     "heroicons": "^2.1.5",
     "next": "15.0.3",

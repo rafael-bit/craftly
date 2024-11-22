@@ -30,7 +30,7 @@ export default function Header() {
 	}, []);
 
 	return (
-		<header className="bg-primary bg-opacity-20 backdrop-blur-lg w-[95%] mx-auto rounded-3xl m-5 top-0  bg-primary/25 shadow-md z-50">
+		<header className="relative bg-primary bg-opacity-20 backdrop-blur-lg w-[95%] mx-auto rounded-3xl m-5 top-0  bg-primary/25 shadow-md z-50">
 			<nav aria-label="Header" className="mx-auto flex max-w-7xl items-center justify-between p-1 lg:px-8">
 				<div className={`flex lg:flex-1 transition-transform duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
 					<Link href="#" className="-m-1.5 p-1.5 flex items-center gap-5">
@@ -54,13 +54,13 @@ export default function Header() {
 						<Bars3Icon aria-hidden="true" className="size-6" />
 					</button>
 				</div>
-				<PopoverGroup className="hidden sm:flex sm:gap-x-12 sm:mr-10">
+				<PopoverGroup className="hidden sm:flex sm:gap-x-12 sm:mr-10 z-50">
 					<Link
 						href="/"
 						className={`text-sm/6 font-semibold text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
 							} delay-[50ms]`}
 					>
-						Home
+						Docs
 					</Link>
 					<Popover className="relative">
 						<PopoverButton
@@ -73,7 +73,7 @@ export default function Header() {
 
 						<PopoverPanel
 							transition
-							className="absolute -left-8 top-full z-50 mt-3 w-screen max-w-md overflow-hidden bg-primary rounded-3xl shadow-lg ring-1 ring-gray-300/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in -ml-32"
+							className="absolute -left-40 top-full z-[10000] mt-3 w-screen max-w-md overflow-hidden bg-primary rounded-3xl shadow-lg ring-1 ring-gray-300/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
 						>
 							<div className="p-4">
 								{products.map((item) => (
@@ -109,11 +109,18 @@ export default function Header() {
 						</PopoverPanel>
 					</Popover>
 					<Link
-						href="#"
+						href="/"
 						className={`text-sm/6 font-semibold text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
 							} delay-[50ms]`}
 					>
-						About
+						Blocks
+					</Link>
+					<Link
+						href="/"
+						className={`text-sm/6 font-semibold text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+							} delay-[50ms]`}
+					>
+						Colors
 					</Link>
 				</PopoverGroup>
 			</nav>
@@ -137,7 +144,7 @@ export default function Header() {
 
 						<div className="space-y-3">
 							<Disclosure as="div">
-								<a href="#" className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Home</a>
+								<Link href="#" className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Docs</Link>
 								<DisclosureButton className="w-full text-left text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover p-3">
 									Components <ChevronDownIcon aria-hidden="true" className="inline w-5 h-5 ml-1" />
 								</DisclosureButton>
@@ -149,7 +156,8 @@ export default function Header() {
 									))}
 								</DisclosurePanel>
 							</Disclosure>
-							<Link href="#" className="block px-3 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">About</Link>
+							<Link href="#" className="block px-3 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Block</Link>
+							<Link href="#" className="block px-3 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Theme</Link>
 						</div>
 					</DialogPanel>
 				</div>
