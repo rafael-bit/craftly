@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { PlayCircleIcon } from "@heroicons/react/20/solid";
 import { SiAzuredataexplorer } from "react-icons/si";
+import Table from "./components/Table";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -33,15 +34,15 @@ export default function Home() {
             <div className="flex gap-2 xs:gap-3 sm:gap-4 lg:gap-7 mt-8 md:mt-10 lg:mt-12">
               <Link
                 href=""
-                className="flex items-center gap-2 lg:gap-3 p-2 lg:p-3 px-3 lg:px-5 bg-primary border border-primary rounded-3xl relative overflow-hidden hover:shadow-md transition-all duration-300 group transform hover:-translate-y-2"
+                className="flex items-center gap-2 lg:gap-3 p-2 lg:p-3 px-3 lg:px-5 bg-primary border border-primary rounded-3xl relative overflow-hidden hover:shadow-md transition-all duration-300 group transform hover:-translate-y-1 ml-2"
               >
-                <PlayCircleIcon className="w-5 xs:w-4 lg:w-6 h-5 xs:h-4 lg:h-6" />
+                <PlayCircleIcon className="w-5 xs:w-4 lg:w-6 h-5 xs:h-4 lg:h-5" />
                 <span className="relative text-sm xs:text-[11px] sm:text-xs lg:text-sm">Watch Demo</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl blur-sm"></div>
               </Link>
               <Link
                 href=""
-                className="flex items-center gap-3 lg:gap-4 xs:p-2 lg:p-3 px-4 xs:px-3 lg:px-5 bg-primary border border-primary rounded-3xl relative overflow-hidden hover:shadow-md transition-all duration-300 group transform hover:-translate-y-2"
+                className="flex items-center gap-3 lg:gap-4 xs:p-2 lg:p-3 px-4 xs:px-3 lg:px-5 bg-primary border border-primary rounded-3xl relative overflow-hidden hover:shadow-md transition-all duration-300 group transform hover:-translate-y-1 ml-2"
               >
                 <SiAzuredataexplorer className="w-4 xs:w-3 lg:w-5 h-4 xs:h-3 lg:h-5" />
                 <span className="relative text-sm xs:text-[11px] sm:text-xs lg:text-sm">Explorer</span>
@@ -60,6 +61,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Table />
     </>
   );
 }
