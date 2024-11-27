@@ -64,7 +64,7 @@ export default function Header() {
 					</Link>
 					<Popover className="relative">
 						<PopoverButton
-							className={`flex items-center gap-x-1 text-sm/6 font-semibold text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+							className={`outline-none flex items-center gap-x-1 text-sm/6 font-semibold text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
 								} delay-[50ms]`}
 						>
 							Components
