@@ -309,7 +309,7 @@ export default function Table() {
 					<table className="w-full border-collapse">
 						{filteredTasks.slice(0, visibleTaskCount).length > 0 ? (
 							<>
-								<thead className="bg-primary">
+								<thead className="bg-primary hover:bg-hover">
 									<tr>
 										<th className="px-4 py-2 text-sm font-medium text-primary text-center">
 											Title
@@ -326,6 +326,7 @@ export default function Table() {
 								<tbody>
 									{filteredTasks.slice(0, visibleTaskCount).map((task, rowIndex) => (
 										<tr
+											className="bg-primary hover:bg-hover"
 											key={task.id}
 										>
 											<td className="px-4 py-2 text-sm text-gray-600 text-center">
