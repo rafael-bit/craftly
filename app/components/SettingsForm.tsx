@@ -1,30 +1,71 @@
 import { useState } from "react";
 
-type SectionKey = "Profile" | "Account" | "Appearance" | "Notifications";
+type SectionKey = "Profile" | "Appearance";
 
 export default function SettingsForm() {
 	const [activeSection, setActiveSection] = useState<SectionKey>("Profile");
 
 	const sections: Record<SectionKey, JSX.Element> = {
 		Profile:
-			<div className="flex flex-col justify-center">
+			<div className="flex flex-col justify-center gap-2">
 				<h2 className="text-2xl font-semibold text-neutral-100">Profile</h2>
-				<p className="text-neutral-400">Change how peoples see you</p>
-			</div>,
-		Account:
-			<div className="flex flex-col justify-center">
-				<h2 className="text-2xl font-semibold text-neutral-100">Account</h2>
-				<p className="text-neutral-400"></p>
+				<p className="text-neutral-400 text-xs border-b border-neutral-600 pb-6">Change how peoples see you</p>
+				<form action="">
+					<label className="flex flex-col text-primary gap-2 pt-6">
+						Username
+						<input type="text" placeholder="Craftly" className="bg-primary outline-none border border-neutral-600 py-2 px-4 rounded-lg text-sm" />
+						<span className="text-neutral-400 text-xs">You can only change this once every 15 days.</span>
+					</label>
+					<label className="flex flex-col text-primary gap-2 pt-6">
+						Email
+						<input type="text" className="bg-primary outline-none border border-neutral-600 py-2 px-4 rounded-lg text-sm" />
+						<span className="text-neutral-400 text-xs">Change your email to principal email.</span>
+					</label>
+					<label className="flex flex-col text-primary gap-2 pt-6">
+						Password
+						<input type="text" className="bg-primary outline-none border border-neutral-600 py-2 px-4 rounded-lg text-sm" />
+						<span className="text-neutral-400 text-xs">Change your password.</span>
+					</label>
+					<label className="flex flex-col text-primary gap-2 pt-6">
+						Confirm password
+						<input type="text" className="bg-primary outline-none border border-neutral-600 py-2 px-4 rounded-lg text-sm" />
+						<span className="text-neutral-400 text-xs">Confirm your password.</span>
+					</label>
+					<div className="w-full flex justify-end">
+						<button className="mt-5 px-10 py-2 rounded-lg bg-primary hover:bg-hover text-white border border-gray-700 hover:text-gray-200 transition-all duration-300">
+							Save
+						</button>
+					</div>
+				</form>
 			</div>,
 		Appearance:
-			<div className="flex flex-col justify-center">
-				<h2 className="text-2xl font-semibold text-neutral-100">Appearance</h2>
-				<p className="text-neutral-400"></p>
-			</div>,
-		Notifications:
-			<div className="flex flex-col justify-center">
-				<h2 className="text-2xl font-semibold text-neutral-100">Notifications</h2>
-				<p className="text-neutral-400"></p>
+			<div className="flex flex-col justify-center gap-2">
+				<h2 className="text-xl font-semibold text-neutral-100">Appearance</h2>
+				<p className="text-neutral-400 text-xs border-b border-neutral-600 pb-6">Customize the appearance of the app like font and theme</p>
+				<form action="" className="flex flex-col">
+					<h5 className="flex flex-col text-lg text-neutral-100 font-semibold gap-2 pt-4 py-2">Font</h5>
+					<select name="font" id="" className="outline-none bg-primary border border-neutral-600 py-1 px-2 rounded-lg">
+						<option value="system">System</option>
+						<option value="arial">Arial</option>
+						<option value="inter">Inter</option>
+						<option value="roboto">Roboto</option>
+						<option value="openSans">Open Sans</option>
+					</select>
+					<span className="text-neutral-400 text-xs pt-2 pb-4">Select your favorite font.</span>
+
+					<h5 className="flex flex-col text-lg text-neutral-100 font-semibold gap-2 pt-4 py-2">Theme</h5>
+					<select name="font" id="" className="outline-none bg-primary border border-neutral-600 py-1 px-2 rounded-lg">
+						<option value="system">System</option>
+						<option value="dark">Dark</option>
+						<option value="light">Light</option>
+					</select>
+					<span className="text-neutral-400 text-xs pt-2">Select your favorite theme.</span>
+					<div className="w-full flex justify-end">
+						<button className="mt-5 px-10 py-2 rounded-lg bg-primary hover:bg-hover text-white border border-gray-700 hover:text-gray-200 transition-all duration-300">
+							Save
+						</button>
+					</div>
+				</form>
 			</div>,
 	};
 
@@ -52,7 +93,7 @@ export default function SettingsForm() {
 							))}
 						</ul>
 					</aside>
-					<div className="w-4/5 p-6 rounded-lg">
+					<div className="w-4/5 px-6 rounded-lg">
 						{sections[activeSection]}
 					</div>
 				</div>

@@ -67,7 +67,7 @@ export default function Table() {
 		<div
 			id="table"
 			ref={ref}
-			className={`mt-24 bg-neutral-950 border-t border-b border-neutral-700 pb-5 transform transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+			className={`bg-neutral-950 bg-opacity-35 pb-5 transform transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
 				}`}
 		>
 			<div className="flex w-1/2 justify-evenly py-4">
@@ -75,7 +75,7 @@ export default function Table() {
 					<button
 						key={key}
 						onClick={() => setSelectedContent(key as keyof typeof contentMap)}
-						className={`py-1.5 px-4 rounded-2xl text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover hover:bg-neutral-900 ${selectedContent === key ? "bg-neutral-900 text-hover scale-105" : ""
+						className={`py-1.5 px-4 rounded-2xl text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover hover:bg-primary ${selectedContent === key ? "bg-neutral-900 text-hover scale-105" : ""
 							}`}
 					>
 						{key}
