@@ -1,5 +1,4 @@
 import { RiProgress1Line, RiProgress4Line, RiProgress8Line } from "react-icons/ri";
-import { GiCancel } from "react-icons/gi";
 import { FaRegTimesCircle, FaRegArrowAltCircleDown, FaRegArrowAltCircleRight, FaRegArrowAltCircleUp } from "react-icons/fa";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import { useEffect, useRef, useState } from "react";
@@ -32,13 +31,6 @@ export default function Tasks() {
 		{ id: 4, title: "Task 4", status: "canceled", priority: "low" },
 	]);
 
-	const statusIcons = {
-		todo: <RiProgress1Line className="text-neutral-300"/>,
-		inProgress: <RiProgress4Line  className="text-neutral-300"/>,
-		done: <RiProgress8Line  className="text-neutral-300"/>,
-		canceled: <FaRegTimesCircle  className="text-neutral-300"/>,
-	};
-
 	const [selectedStatus, setSelectedStatus] = useState({
 		todo: false,
 		inProgress: false,
@@ -69,12 +61,8 @@ export default function Tasks() {
 		setTaskBeingEdited(null);
 	};
 
-	const handleStatusChange = (event: React.ChangeEvent<HTMLInputElement>, status: string) => {
+	const handleStatusChange = (event: React.ChangeEvent<HTMLInputElement>, status: keyof typeof selectedStatus) => {
 		setSelectedStatus((prev) => ({ ...prev, [status]: event.target.checked }));
-	};
-
-	const deleteTask = (id: number) => {
-		setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
 	};
 
 	const filteredTasks = tasks.filter((task) => {
@@ -88,10 +76,25 @@ export default function Tasks() {
 			([key, isSelected]) => isSelected && task.priority === key
 		);
 
-		return (titleMatch || !filterText) &&
+		return (
+			(titleMatch || !filterText) &&
 			(statusMatch || !Object.values(selectedStatus).includes(true)) &&
-			(priorityMatch || !Object.values(selectedPriority).includes(true));
+			(priorityMatch || !Object.values(selectedPriority).includes(true))
+		);
 	});
+
+	const deleteTask = (id: number) => {
+		setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+	};
+
+	const [selectedLinks, setSelectedLinks] = useState({
+		todo: false,
+		inProgress: false,
+		done: false,
+		canceled: false,
+	});
+
+	const limitedTasks = filteredTasks.slice(0, visibleTaskCount);
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
@@ -205,24 +208,26 @@ export default function Tasks() {
 								</PopoverButton>
 								<PopoverPanel
 									transition
-									className="absolute z-[10000] mt-3 w-44 overflow-hidden bg-primary rounded-xl shadow-lg ring-1 ring-gray-300/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in px-2 py-3"
+									className="absolute z-[10000] mt-3 w-44 overflow-hidden bg-primary rounded-xl shadow-lg ring-1 ring-gray-300/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in px-2 py-3 text-primary"
 								>
 									<div className="flex flex-col gap-2">
 										{[
-											{ label: "Todo", key: "todo" },
-											{ label: "In Progress", key: "inProgress" },
-											{ label: "Done", key: "done" },
-											{ label: "Canceled", key: "canceled" },
-										].map(({ label, key }) => (
-											<label key={key} className="flex items-center gap-3 cursor-pointer hover:bg-hover px-2 py-1 rounded">
+											{ key: "todo", label: "To Do", icon: <RiProgress1Line /> },
+											{ key: "inProgress", label: "In Progress", icon: <RiProgress4Line /> },
+											{ key: "done", label: "Done", icon: <RiProgress8Line /> },
+											{ key: "canceled", label: "Canceled", icon: <FaRegTimesCircle /> },
+										].map((status) => (
+											<label key={status.key} className="flex items-center gap-3 cursor-pointer hover:bg-hover px-2 py-1 rounded">
 												<input
 													type="checkbox"
-													checked={selectedStatus[status as keyof typeof selectedStatus]}
-													onChange={(e) => handleStatusChange(e, status)}
+													checked={selectedStatus[status.key as keyof typeof selectedStatus]}
+													onChange={(e) => handleStatusChange(e, status.key as keyof typeof selectedStatus)}
 													className="appearance-none h-4 w-4 bg-primary border-2 border-neutral-500 rounded checked:bg-primary checked:after:content-['✓'] checked:border-neutral-500 checked:after:text-white checked:content-center checked:flex checked:items-center checked:justify-center checked:leading-none"
 												/>
-												{statusIcons[key as keyof typeof statusIcons]}
-												<span>{label}</span>
+												<span className="flex items-center gap-2">
+													{status.icon}
+													{status.label}
+												</span>
 											</label>
 										))}
 									</div>
@@ -237,26 +242,30 @@ export default function Tasks() {
 								</PopoverButton>
 								<PopoverPanel
 									transition
-									className="absolute z-[10000] mt-3 w-40 overflow-hidden bg-primary rounded-xl shadow-lg ring-1 ring-gray-300/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in px-2 py-3"
+									className="absolute z-[10000] mt-3 w-40 overflow-hidden bg-primary rounded-xl shadow-lg ring-1 ring-gray-300/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in px-2 py-3 text-primary"
 								>
 									<div className="flex flex-col gap-2">
-										{["low", "medium", "high"].map((priority) => (
-											<label key={priority} className="flex items-center gap-3 cursor-pointer hover:bg-hover px-2 py-1 rounded">
+										{[
+											{ key: "low", label: "Low", icon: <FaRegArrowAltCircleDown /> },
+											{ key: "medium", label: "Medium", icon: <FaRegArrowAltCircleRight /> },
+											{ key: "high", label: "High", icon: <FaRegArrowAltCircleUp /> },
+										].map((priority) => (
+											<label key={priority.key} className="flex items-center gap-3 cursor-pointer hover:bg-hover px-2 py-1 rounded">
 												<input
 													type="checkbox"
-													checked={selectedPriority[priority as keyof typeof selectedPriority]}
+													checked={selectedPriority[priority.key as keyof typeof selectedPriority]}
 													onChange={(e) =>
 														setSelectedPriority((prev) => ({
 															...prev,
-															[priority]: e.target.checked,
+															[priority.key]: e.target.checked,
 														}))
 													}
 													className="appearance-none h-4 w-4 bg-primary border-2 border-neutral-500 rounded checked:bg-primary checked:after:content-['✓'] checked:border-neutral-500 checked:after:text-white checked:content-center checked:flex checked:items-center checked:justify-center checked:leading-none"
 												/>
-												{priority === "low" && <FaRegArrowAltCircleDown className="text-neutral-300" />}
-												{priority === "medium" && <FaRegArrowAltCircleRight className="text-neutral-300" />}
-												{priority === "high" && <FaRegArrowAltCircleUp className="text-neutral-300" />}
-												<span>{priority.charAt(0).toUpperCase() + priority.slice(1)}</span>
+												<span className="flex items-center gap-2">
+													{priority.icon}
+													{priority.label}
+												</span>
 											</label>
 										))}
 									</div>
@@ -289,7 +298,7 @@ export default function Tasks() {
 					</div>
 				</div>
 			</div>
-			<div className="w-full border border-neutral-700 rounded-lg p-1">
+			<div className="w-full border border-neutral-700 rounded-xl p-1">
 				<table className="w-full border-collapse">
 					{filteredTasks.slice(0, visibleTaskCount).length > 0 ? (
 						<>
@@ -308,7 +317,7 @@ export default function Tasks() {
 								</tr>
 							</thead>
 							<tbody>
-								{filteredTasks.slice(0, visibleTaskCount).map((task) => (
+								{filteredTasks.slice(0, visibleTaskCount).map((task, rowIndex) => (
 									<tr
 										className="bg-primary hover:bg-hover"
 										key={task.id}
@@ -346,13 +355,13 @@ export default function Tasks() {
 												<PopoverPanel className="absolute z-10 mt-2 w-40 bg-primary rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
 													<ul className="p-2">
 														<li
-															className="flex items-center cursor-pointer gap-2 px-4 py-2 hover:bg-hover rounded-md"
+															className="flex items-center cursor-pointer gap-2 px-4 py-2 hover:bg-hover rounded-md text-primary"
 															onClick={() => setTaskBeingEdited(task)}
 														>
 															Edit Task
 														</li>
 														<li
-															className="flex items-center cursor-pointer gap-2 px-4 py-2 hover:bg-hover rounded-md"
+															className="flex items-center cursor-pointer gap-2 px-4 py-2 hover:bg-hover rounded-md text-primary"
 															onClick={() => deleteTask(task.id)}
 														>
 															Delete Task

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Tasks from "./Tasks";
+import SettingsForm from "./SettingsForm";
 
 export default function Table() {
 	const [selectedContent, setSelectedContent] = useState<"General" | "Dashboards" | "Forms" | "Authenticator" | "Tasks">("General");
@@ -34,7 +35,7 @@ export default function Table() {
 			</div>,
 		],
 		Forms: [
-			
+			<SettingsForm />
 		],
 		Authenticator: [
 			<div key="auth-1">
