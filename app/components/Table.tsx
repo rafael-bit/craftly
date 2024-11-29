@@ -35,7 +35,6 @@ export default function Table() {
 			</div>,
 		],
 		Forms: [
-			<SettingsForm />
 		],
 		Authenticator: [
 			<div key="auth-1">

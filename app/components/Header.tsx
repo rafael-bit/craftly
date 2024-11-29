@@ -37,7 +37,7 @@ export default function Header() {
 						<span className="sr-only">Craftly</span>
 						<Image
 							alt=""
-							src="/logo.png"
+							src="/logo-noBorder.png"
 							width={65}
 							height={65}
 						/>
