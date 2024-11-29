@@ -35,6 +35,7 @@ export default function Table() {
 			</div>,
 		],
 		Forms: [
+			<SettingsForm />
 		],
 		Authenticator: [
 			<div key="auth-1">
@@ -74,7 +75,7 @@ export default function Table() {
 					<button
 						key={key}
 						onClick={() => setSelectedContent(key as keyof typeof contentMap)}
-						className={`py-2 px-4 rounded-2xl text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover hover:bg-neutral-900 ${selectedContent === key ? "bg-neutral-900 text-hover scale-105" : ""
+						className={`py-1.5 px-4 rounded-2xl text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover hover:bg-neutral-900 ${selectedContent === key ? "bg-neutral-900 text-hover scale-105" : ""
 							}`}
 					>
 						{key}
