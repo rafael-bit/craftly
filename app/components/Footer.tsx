@@ -3,6 +3,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { FaGithub } from 'react-icons/fa6';
+import { Bar } from 'react-chartjs-2';
+import {
+	Chart as ChartJS,
+	CategoryScale,
+	LinearScale,
+	BarElement,
+	Title,
+	Tooltip,
+	Legend,
+} from 'chart.js';
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function Footer() {
 	const [isVisible, setIsVisible] = useState(false);
@@ -32,12 +45,8 @@ export default function Footer() {
 				</p>
 
 				<Link href="/privacy" className="flex flex-col items-center gap-2">
-					<Image
-						src="/github.png"
-						alt="Github"
-						width={30}
-						height={30}
-						className="w-7 h-7 hover:w-8 hover:h-8"
+					<FaGithub
+						className="w-8 h-8 transform duration-300 hover:scale-110"
 					/>
 					<p className="text-xs leading-5 text-primary hover:underline hover:text-hover">
 						Build by Rafael Áquila
