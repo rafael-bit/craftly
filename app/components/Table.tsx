@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Tasks from "./Tasks";
 import SettingsForm from "./SettingsForm";
 import Authenticator from "./Authenticator";
+import Dashboard from "./Dashboard";
 
 export default function Table() {
 	const [selectedContent, setSelectedContent] = useState<"General" | "Dashboards" | "Forms" | "Authenticator" | "Tasks">("General");
@@ -31,8 +32,7 @@ export default function Table() {
 
 	const otherSectionsContent: Record<string, JSX.Element[]> = {
 		Dashboards: [
-			<div key="dash-1">
-			</div>,
+			<Dashboard />
 		],
 		Forms: [
 			<SettingsForm />
