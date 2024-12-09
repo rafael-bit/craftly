@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 
+const plugin = require('tailwind-scrollbar');
+
 export default {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
