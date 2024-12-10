@@ -3,9 +3,10 @@ import Tasks from "./Tasks";
 import SettingsForm from "./SettingsForm";
 import Authenticator from "./Authenticator";
 import Dashboard from "./Dashboard";
+import Footer from "./Footer";
 
 export default function Table() {
-	const [selectedContent, setSelectedContent] = useState<"General" | "Dashboards" | "Forms" | "Authenticator" | "Tasks">("General");
+	const [selectedContent, setSelectedContent] = useState<"General" | "Dashboards" | "Forms" | "Authenticator" | "Tasks" | "Header" | "Footer">("General");
 	const [isVisible, setIsVisible] = useState(false);
 	const ref = useRef<HTMLDivElement>(null);
 
@@ -43,6 +44,8 @@ export default function Table() {
 		Tasks: [
 			<Tasks />
 		],
+		Header: [],
+		Footer: [],
 	};
 
 	const generalContent = Object.entries(otherSectionsContent).flatMap(([key, components]) => [
