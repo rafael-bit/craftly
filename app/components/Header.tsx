@@ -26,7 +26,7 @@ export default function Header() {
 				<div className={`flex lg:flex-1 transition-transform duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
 					<Link href="#" className="-m-1.5 p-1.5 flex items-center gap-5">
 						<span className="sr-only">Craftly</span>
-						<Image 
+						<Image
 							alt=""
 							src="/logo-noBorder.png"
 							width={65}
@@ -45,6 +45,7 @@ export default function Header() {
 						<Bars3Icon aria-hidden="true" className="size-6" />
 					</button>
 				</div>
+				<div className="hidden sm:flex justify-between gap-4">
 					<Link
 						href="/"
 						className={`text-sm/6 font-semibold text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
@@ -72,6 +73,7 @@ export default function Header() {
 					>
 						Colors
 					</Link>
+				</div>
 			</nav>
 			<Dialog open={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} className="fixed inset-0 z-10 bg-black bg-opacity-50">
 				<div className="fixed inset-0 z-20 flex items-start justify-end">
