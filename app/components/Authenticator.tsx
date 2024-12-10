@@ -3,7 +3,7 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 export default function Auth() {
 	return (
 		<div key="auth-1" className="flex flex-col items-center justify-center">
-			<div className='border-none shadow-2xl'>
+			<div className='border-none shadow-2xl bg-neutral-950 rounded-2xl'>
 				<div className=' md:p-16 flex flex-col justify-center relative z-20'>
 					<div>
 						<h1 className='text-4xl font-semibold text-center mb-5'>Login</h1>
