@@ -43,7 +43,6 @@ html {
 	background-color: #3c3f41;
 }
 
-/* Remove as setinhas (buttons) do scrollbar */
 .scrollbar::-webkit-scrollbar-button {
 	display: none;
 }
