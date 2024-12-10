@@ -62,6 +62,8 @@ export default function Table() {
 		Forms: otherSectionsContent.Forms,
 		Authenticator: otherSectionsContent.Authenticator,
 		Tasks: otherSectionsContent.Tasks,
+		Header: [],
+		Footer: []
 	};
 
 	return (

@@ -18,3 +18,22 @@ html {
   background-color: var(--background);
   color: var(--foreground);
 }
+
+.scrollbar {
+	scrollbar-width: thin;
+	scrollbar-color: #4b5563 #1f2937;
+}
+.scrollbar::-webkit-scrollbar {
+	width: 10px;
+}
+.scrollbar::-webkit-scrollbar-track {
+	background: #1f2937;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+	background-color: #4b5563;
+	border-radius: 6px;
+	border: 2px solid #1f2937; 
+}
+.scrollbar::-webkit-scrollbar-thumb:hover {
+	background-color: #6b7280;
+}
