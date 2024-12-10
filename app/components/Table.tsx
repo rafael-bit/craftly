@@ -44,8 +44,41 @@ export default function Table() {
 		Tasks: [
 			<Tasks />
 		],
-		Header: [],
-		Footer: [],
+		Header: [
+			<header className="bg-neutral-900 text-neutral-50 shadow-md">
+				<div className="container mx-auto px-4 py-4 flex justify-between items-center">
+					<h1 className="text-2xl font-bold">MyApp</h1>
+					<nav className="space-x-6">
+						<a href="#" className="hover:text-gray-400 transition">
+							Home
+						</a>
+						<a href="#" className="hover:text-gray-400 transition">
+							About
+						</a>
+						<a href="#" className="hover:text-gray-400 transition">
+							Contact
+						</a>
+					</nav>
+				</div>
+			</header>
+		],
+		Footer: [
+			<footer className="bg-neutral-900 text-neutral-300">
+				<div className="container mx-auto px-4 py-6 text-center">
+					<p className="text-sm">
+						&copy; {new Date().getFullYear()} MyApp. All rights reserved.
+					</p>
+					<div className="flex justify-center space-x-4 mt-2">
+						<a href="#" className="hover:text-neutral-100 transition">
+							Privacy Policy
+						</a>
+						<a href="#" className="hover:text-neutral-100 transition">
+							Terms of Service
+						</a>
+					</div>
+				</div>
+			</footer>
+		],
 	};
 
 	const generalContent = Object.entries(otherSectionsContent).flatMap(([key, components]) => [
@@ -62,8 +95,8 @@ export default function Table() {
 		Forms: otherSectionsContent.Forms,
 		Authenticator: otherSectionsContent.Authenticator,
 		Tasks: otherSectionsContent.Tasks,
-		Header: [],
-		Footer: []
+		Header: otherSectionsContent.Header,
+		Footer: otherSectionsContent.Footer
 	};
 
 	return (
