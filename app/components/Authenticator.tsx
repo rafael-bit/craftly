@@ -72,10 +72,10 @@ export default function Auth() {
 			)`;
 
 	return (
-		<div className="">
+		<div className="scrollbar">
 			<button
 				onClick={() => setIsCodeVisible(!isCodeVisible)}
-				className="flex items-center justify-around p-2 text-sm bg-neutral-900 hover:bg-neutral-800 transition-all duration-300 text-white rounded shadow-md"
+				className="mb-3 flex items-center justify-around p-2 text-sm bg-neutral-900 hover:bg-neutral-800 transition-all duration-300 text-white rounded shadow-md"
 			>
 				<RiCodeBoxLine size={24} />
 				{isCodeVisible ? "Hide Code" : "View Code"}

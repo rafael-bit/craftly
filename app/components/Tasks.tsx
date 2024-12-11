@@ -589,9 +589,9 @@ export default function Tasks() {
 	}, []);
 
 	return (
-		<div className="border-t border-neutral-400 p-2 scrollbar">
+		<div className="scrollbar">
 			<button
-				className="flex items-center justify-around p-2 text-sm bg-neutral-900 hover:bg-neutral-800 transition-all duration-300 text-white rounded shadow-md"
+				className="mb-3 flex items-center justify-around p-2 text-sm bg-neutral-900 hover:bg-neutral-800 transition-all duration-300 text-white rounded shadow-md"
 			>
 				<RiCodeBoxLine size={24} />
 				{isCodeVisible ? "Hide Code" : "View Code"}
