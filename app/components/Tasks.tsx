@@ -591,6 +591,7 @@ export default function Tasks() {
 	return (
 		<div className="scrollbar">
 			<button
+				onClick={() => setIsCodeVisible(!isCodeVisible)}
 				className="mb-3 flex items-center justify-around p-2 text-sm bg-neutral-900 hover:bg-neutral-800 transition-all duration-300 text-white rounded shadow-md"
 			>
 				<RiCodeBoxLine size={24} />
@@ -599,7 +600,6 @@ export default function Tasks() {
 			<div className="relative w-3/4 mx-auto mt-10 p-4 bg-primary rounded-md shadow-md">
 				{isCodeVisible && (
 					<div
-						onClick={() => setIsCodeVisible(false)}
 						className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
 					>
 						<div className="bg-zinc-900 rounded-lg shadow-lg p-6 w-3/4 h-2/3 overflow-auto">
