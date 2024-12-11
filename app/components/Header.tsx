@@ -24,7 +24,7 @@ export default function Header() {
 		<header className="relative bg-primary bg-opacity-20 backdrop-blur-lg w-[95%] mx-auto rounded-3xl m-5 top-0  bg-primary/25 shadow-md z-50">
 			<nav aria-label="Header" className="mx-auto flex max-w-7xl items-center justify-between p-1 lg:px-8">
 				<div className={`flex lg:flex-1 transition-transform duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-					<Link href="#" className="-m-1.5 p-1.5 flex items-center gap-5">
+					<Link href="/" className="-m-1.5 p-1.5 flex items-center gap-5">
 						<span className="sr-only">Craftly</span>
 						<Image
 							alt=""
@@ -67,7 +67,7 @@ export default function Header() {
 						Blocks
 					</Link>
 					<Link
-						href="/"
+						href="/colors"
 						className={`text-sm/6 font-semibold text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
 							} delay-[50ms]`}
 					>
@@ -97,7 +97,7 @@ export default function Header() {
 							<Link href="#" className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Docs</Link>
 							<Link href="/component" className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Components</Link>
 							<Link href="#" className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Block</Link>
-							<Link href="#" className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Theme</Link>
+							<Link href="/colors" className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Colors</Link>
 						</div>
 					</DialogPanel>
 				</div>
