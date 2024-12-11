@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { PlayCircleIcon } from "@heroicons/react/20/solid";
 import { SiAzuredataexplorer } from "react-icons/si";
-import Table from "./components/Table";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
