@@ -146,7 +146,7 @@ export default function Tasks() {
 				}, []);
 
 				return(
-					<div className="relative w-3/4 mx-auto mt-10 p-4 bg-primary rounded-md shadow-md">
+					<div className="relative w-3/4 mx-auto mt-10 p-4 bg-neutral-950 rounded-md shadow-md">
 						{isCodeVisible && (
 							<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
 								<div className="bg-zinc-900 rounded-lg shadow-lg p-6 w-3/4 overflow-auto">
@@ -193,7 +193,7 @@ export default function Tasks() {
 											placeholder="Task Title"
 											value={newTask.title}
 											onChange={(e) => setNewTask((prev) => ({ ...prev, title: e.target.value }))}
-											className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
+											className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-neutral-100 border-zinc-800"
 										/>
 										<select
 											value={newTask.status}
@@ -203,7 +203,7 @@ export default function Tasks() {
 													status: e.target.value as Task["status"],
 												}))
 											}
-											className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
+											className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-neutral-100 border-zinc-800"
 										>
 											<option value="todo">To Do</option>
 											<option value="inProgress">In Progress</option>
@@ -219,7 +219,7 @@ export default function Tasks() {
 													priority: e.target.value as Task["priority"],
 												}))
 											}
-											className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
+											className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-neutral-100 border-zinc-800"
 										>
 											<option value="low">Low</option>
 											<option value="medium">Medium</option>
@@ -254,7 +254,7 @@ export default function Tasks() {
 											</PopoverButton>
 											<PopoverPanel
 												transition
-												className="absolute z-[10000] mt-3 w-44 overflow-hidden bg-primary rounded-xl shadow-lg ring-1 ring-gray-300/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in px-2 py-3 text-primary"
+												className="absolute z-[10000] mt-3 w-44 overflow-hidden bg-neutral-950 rounded-xl shadow-lg ring-1 ring-gray-300/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in px-2 py-3 text-neutral-900"
 											>
 												<div className="flex flex-col gap-2">
 													{[
@@ -263,12 +263,12 @@ export default function Tasks() {
 														{ key: "done", label: "Done", icon: <RiProgress8Line /> },
 														{ key: "canceled", label: "Canceled", icon: <FaRegTimesCircle /> },
 													].map((status) => (
-														<label key={status.key} className="flex items-center gap-3 cursor-pointer hover:bg-hover px-2 py-1 rounded">
+														<label key={status.key} className="flex items-center gap-3 cursor-pointer hover:bg-neutral-900 px-2 py-1 rounded">
 															<input
 																type="checkbox"
 																checked={selectedStatus[status.key as keyof typeof selectedStatus]}
 																onChange={(e) => handleStatusChange(e, status.key as keyof typeof selectedStatus)}
-																className="appearance-none h-4 w-4 bg-primary border-2 border-neutral-500 rounded checked:bg-primary checked:after:content-['✓'] checked:border-neutral-500 checked:after:text-white checked:content-center checked:flex checked:items-center checked:justify-center checked:leading-none"
+																className="appearance-none h-4 w-4 bg-neutral-950 border-2 border-neutral-500 rounded checked:bg-neutral-950 checked:after:content-['✓'] checked:border-neutral-500 checked:after:text-white checked:content-center checked:flex checked:items-center checked:justify-center checked:leading-none"
 															/>
 															<span className="flex items-center gap-2">
 																{status.icon}
@@ -288,7 +288,7 @@ export default function Tasks() {
 											</PopoverButton>
 											<PopoverPanel
 												transition
-												className="absolute z-[10000] mt-3 w-40 overflow-hidden bg-primary rounded-xl shadow-lg ring-1 ring-gray-300/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in px-2 py-3 text-primary"
+												className="absolute z-[10000] mt-3 w-40 overflow-hidden bg-neutral-950 rounded-xl shadow-lg ring-1 ring-gray-300/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in px-2 py-3 text-neutral-100"
 											>
 												<div className="flex flex-col gap-2">
 													{[
@@ -306,7 +306,7 @@ export default function Tasks() {
 																		[priority.key]: e.target.checked,
 																	}))
 																}
-																className="appearance-none h-4 w-4 bg-primary border-2 border-neutral-500 rounded checked:bg-primary checked:after:content-['✓'] checked:border-neutral-500 checked:after:text-white checked:content-center checked:flex checked:items-center checked:justify-center checked:leading-none"
+																className="appearance-none h-4 w-4 bg-neutral-950 border-2 border-neutral-500 rounded checked:bg-neutral-950 checked:after:content-['✓'] checked:border-neutral-500 checked:after:text-white checked:content-center checked:flex checked:items-center checked:justify-center checked:leading-none"
 															/>
 															<span className="flex items-center gap-2">
 																{priority.icon}
@@ -348,15 +348,15 @@ export default function Tasks() {
 							<table className="w-full border-collapse">
 								{filteredTasks.slice(0, visibleTaskCount).length > 0 ? (
 									<>
-										<thead className="bg-primary hover:bg-hover">
+										<thead className="bg-neutral-950 hover:bg-neutral-900">
 											<tr>
-												<th className="px-4 py-2 text-sm font-medium text-primary text-center">
+												<th className="px-4 py-2 text-sm font-medium text-neutral-100 text-center">
 													Title
 												</th>
-												<th className="px-4 py-2 text-sm font-medium text-primary text-center">
+												<th className="px-4 py-2 text-sm font-medium text-neutral-100 text-center">
 													Status
 												</th>
-												<th className="px-4 py-2 text-sm font-medium text-primary text-center">
+												<th className="px-4 py-2 text-sm font-medium text-neutral-100 text-center">
 													Priority
 												</th>
 												<th className="px-4 py-2 text-sm font-medium"></th>
@@ -365,7 +365,7 @@ export default function Tasks() {
 										<tbody>
 											{filteredTasks.slice(0, visibleTaskCount).map((task, rowIndex) => (
 												<tr
-													className="bg-primary hover:bg-hover"
+													className="bg-neutral-950 hover:bg-neutral-900"
 													key={task.id}
 												>
 													<td className="px-4 py-2 text-sm text-gray-600 text-center">
@@ -380,7 +380,7 @@ export default function Tasks() {
 													<td className="px-4 py-2 text-sm text-gray-600 text-right flex justify-end">
 														<Popover className="relative">
 															<PopoverButton
-																className="flex items-center outline-none px-2 py-0.5 rounded-lg text-primary hover:text-hover text-sm transition-all duration-300 transform hover:-translate-y-0.5"
+																className="flex items-center outline-none px-2 py-0.5 rounded-lg text-neutral-100 hover:text-neutral-50 text-sm transition-all duration-300 transform hover:-translate-y-0.5"
 															>
 																<svg
 																	xmlns="http://www.w3.org/2000/svg"
@@ -398,16 +398,16 @@ export default function Tasks() {
 																	<circle cx="5" cy="12" r="1"></circle>
 																</svg>
 															</PopoverButton>
-															<PopoverPanel className="absolute z-10 mt-2 w-40 bg-primary rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+															<PopoverPanel className="absolute z-10 mt-2 w-40 bg-neutral-950 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
 																<ul className="p-2">
 																	<li
-																		className="flex items-center cursor-pointer gap-2 px-4 py-2 hover:bg-hover rounded-md text-primary"
+																		className="flex items-center cursor-pointer gap-2 px-4 py-2 hover:bg-hover rounded-md text-neutral-100"
 																		onClick={() => setTaskBeingEdited(task)}
 																	>
 																		Edit Task
 																	</li>
 																	<li
-																		className="flex items-center cursor-pointer gap-2 px-4 py-2 hover:bg-hover rounded-md text-primary"
+																		className="flex items-center cursor-pointer gap-2 px-4 py-2 hover:bg-hover rounded-md text-neutral-100"
 																		onClick={() => deleteTask(task.id)}
 																	>
 																		Delete Task
@@ -425,7 +425,7 @@ export default function Tasks() {
 																							prev ? { ...prev, title: e.target.value } : null
 																						)
 																					}
-																					className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
+																					className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-neutral-100 border-zinc-800"
 																				/>
 																				<select
 																					value={taskBeingEdited.status}
@@ -434,7 +434,7 @@ export default function Tasks() {
 																							prev ? { ...prev, status: e.target.value as Task["status"] } : null
 																						)
 																					}
-																					className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
+																					className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-neutral-100 border-zinc-800"
 																				>
 																					<option value="todo">To Do</option>
 																					<option value="inProgress">In Progress</option>
@@ -448,7 +448,7 @@ export default function Tasks() {
 																							prev ? { ...prev, priority: e.target.value as Task["priority"] } : null
 																						)
 																					}
-																					className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
+																					className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-neutral-100 border-zinc-800"
 																				>
 																					<option value="low">Low</option>
 																					<option value="medium">Medium</option>
@@ -457,7 +457,7 @@ export default function Tasks() {
 																				<div className="flex justify-end gap-2">
 																					<button
 																						onClick={() => setTaskBeingEdited(null)}
-																						className="px-4 py-2 rounded bg-red-700 hover:bg-red-600 transition-all text-primary hover:text-hover duration-200"
+																						className="px-4 py-2 rounded bg-red-700 hover:bg-red-600 transition-all text-neutral-100 hover:text-neutral-50 duration-200"
 																					>
 																						Cancel
 																					</button>
@@ -465,7 +465,7 @@ export default function Tasks() {
 																						onClick={() => {
 																							if (taskBeingEdited) updateTask(taskBeingEdited);
 																						}}
-																						className="px-4 py-2 bg-gray-800 rounded hover:bg-gray-700 text-primary hover:text-hover transition-all duration-200"
+																						className="px-4 py-2 bg-gray-800 rounded hover:bg-gray-700 text-neutral-100 hover:text-neutral-50 transition-all duration-200"
 																					>
 																						Save Task
 																					</button>
