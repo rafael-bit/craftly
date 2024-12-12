@@ -60,11 +60,11 @@ export default function Header() {
 					>Components
 					</Link>
 					<Link
-						href="/"
+						href="/Icons"
 						className={`text-sm/6 font-semibold text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
 							} delay-[50ms]`}
 					>
-						Blocks
+						Icons
 					</Link>
 					<Link
 						href="/colors"
@@ -96,7 +96,7 @@ export default function Header() {
 						<div className="space-y-3">
 							<Link href="#" className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Docs</Link>
 							<Link href="/component" className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Components</Link>
-							<Link href="#" className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Block</Link>
+							<Link href="Icons" className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Icons</Link>
 							<Link href="/colors" className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Colors</Link>
 						</div>
 					</DialogPanel>
