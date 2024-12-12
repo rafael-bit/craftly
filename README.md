@@ -34,7 +34,7 @@ git clone https://github.com/rafael-bit/craftly
 	yarn dev
 ```
 
-Open this adress in your navegation: [Craftly](http://craftly.vercel.app/)
+Open this adress in your navegation: [Craftly](http://craftlys.vercel.app/)
 
 # 💻 Technologies
 
