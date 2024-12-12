@@ -7,6 +7,7 @@ import { RiCodeBoxLine } from "react-icons/ri";
 import { IoIosClose } from "react-icons/io";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import Link from "next/link";
 
 export default function Table() {
 	const [selectedContent, setSelectedContent] = useState<"General" | "Dashboards" | "Forms" | "Authenticator" | "Tasks" | "Header" | "Footer">("General");
@@ -85,19 +86,19 @@ export default function Table() {
 
 	const otherSectionsContent: Record<string, JSX.Element[]> = {
 		Dashboards: [
-			<Dashboard />
+			<Dashboard key="dash-1" />
 		],
 		Forms: [
-			<SettingsForm />
+			<SettingsForm key="form-1" />
 		],
 		Authenticator: [
-			<Authenticator />
+			<Authenticator key="auth-1" />
 		],
 		Tasks: [
-			<Tasks />
+			<Tasks key="task-1" />
 		],
 		Header: [
-			<div className="scrollbar">
+			<div key="header-1" className="scrollbar">
 				<button
 					onClick={() => setIsCodeVisible(!isCodeVisible)}
 					className="mb-3 flex items-center justify-around p-2 text-sm bg-neutral-900 hover:bg-neutral-800 transition-all duration-300 text-white rounded shadow-md"
@@ -150,7 +151,7 @@ export default function Table() {
 			</div>
 		],
 		Footer: [
-			<div className="scrollbar">
+			<div key="footer-1" className="scrollbar">
 				<button
 					onClick={() => setIsCodeVisible(!isCodeVisible)}
 					className="mb-3 flex items-center justify-around p-2 text-sm bg-neutral-900 hover:bg-neutral-800 transition-all duration-300 text-white rounded shadow-md"
@@ -190,12 +191,12 @@ export default function Table() {
 							&copy; {new Date().getFullYear()} MyApp. All rights reserved.
 						</p>
 						<div className="flex justify-center space-x-4 mt-2">
-							<a href="#" className="hover:text-neutral-100 transition">
+							<Link href="#" className="hover:text-neutral-100 transition">
 								Privacy Policy
-							</a>
-							<a href="#" className="hover:text-neutral-100 transition">
+							</Link>
+							<Link href="#" className="hover:text-neutral-100 transition">
 								Terms of Service
-							</a>
+							</Link>
 						</div>
 					</div>
 				</footer>

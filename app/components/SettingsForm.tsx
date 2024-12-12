@@ -178,7 +178,7 @@ export default function SettingsForm() {
 	};
 
 	return (
-		<div className="">
+		<div key="forms-1">
 			<button
 				onClick={() => setIsCodeVisible(!isCodeVisible)}
 				className="mb-3 flex items-center justify-around p-2 text-sm bg-neutral-900 hover:bg-neutral-800 transition-all duration-300 text-white rounded shadow-md"
@@ -212,7 +212,7 @@ export default function SettingsForm() {
 					</div>
 				</div>
 			)}
-			<div key="forms-1" className="w-full flex justify-center bg-primary py-10">
+			<div className="w-full flex justify-center bg-primary py-10">
 				<div className="w-5/6">
 					<div>
 						<h1 className="text-3xl font-bold text-gray-100 mb-2">Settings</h1>

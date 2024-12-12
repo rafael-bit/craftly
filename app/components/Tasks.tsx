@@ -3,7 +3,7 @@ import { RiProgress1Line, RiProgress4Line, RiProgress8Line } from "react-icons/r
 import { FaRegTimesCircle, FaRegArrowAltCircleDown, FaRegArrowAltCircleRight, FaRegArrowAltCircleUp } from "react-icons/fa";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import { RiCodeBoxLine } from "react-icons/ri";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
@@ -15,10 +15,8 @@ type Task = {
 };
 
 export default function Tasks() {
-	const [isVisible, setIsVisible] = useState(false);
 	const [filterText, setFilterText] = useState("");
 	const [visibleTaskCount, setVisibleTaskCount] = useState(5);
-	const ref = useRef<HTMLDivElement>(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [taskBeingEdited, setTaskBeingEdited] = useState<Task | null>(null);
 
@@ -558,38 +556,10 @@ export default function Tasks() {
 		setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
 	};
 
-	const [selectedLinks, setSelectedLinks] = useState({
-		todo: false,
-		inProgress: false,
-		done: false,
-		canceled: false,
-	});
-
 	const limitedTasks = filteredTasks.slice(0, visibleTaskCount);
 
-	useEffect(() => {
-		const observer = new IntersectionObserver(
-			([entry]) => {
-				if (entry.isIntersecting) {
-					setIsVisible(true);
-				}
-			},
-			{ threshold: 0.1 }
-		);
-
-		if (ref.current) {
-			observer.observe(ref.current);
-		}
-
-		return () => {
-			if (ref.current) {
-				observer.unobserve(ref.current);
-			}
-		};
-	}, []);
-
 	return (
-		<div className="scrollbar">
+		<div key="task-1" className="scrollbar">
 			<button
 				onClick={() => setIsCodeVisible(!isCodeVisible)}
 				className="mb-3 flex items-center justify-around p-2 text-sm bg-neutral-900 hover:bg-neutral-800 transition-all duration-300 text-white rounded shadow-md"
@@ -822,7 +792,7 @@ export default function Tasks() {
 									</tr>
 								</thead>
 								<tbody>
-									{filteredTasks.slice(0, visibleTaskCount).map((task, rowIndex) => (
+									{limitedTasks.map((task) => (
 										<tr
 											className="bg-primary hover:bg-hover"
 											key={task.id}

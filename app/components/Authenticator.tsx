@@ -72,7 +72,7 @@ export default function Auth() {
 			)`;
 
 	return (
-		<div className="scrollbar">
+		<div key="auth-1" className="scrollbar">
 			<button
 				onClick={() => setIsCodeVisible(!isCodeVisible)}
 				className="mb-3 flex items-center justify-around p-2 text-sm bg-neutral-900 hover:bg-neutral-800 transition-all duration-300 text-white rounded shadow-md"
@@ -106,7 +106,7 @@ export default function Auth() {
 					</div>
 				</div>
 			)}
-			<div key="auth-1" className="flex flex-col items-center justify-center">
+			<div className="flex flex-col items-center justify-center">
 				<div className='border-none shadow-2xl bg-neutral-950 rounded-2xl'>
 					<div className=' md:p-16 flex flex-col justify-center relative z-20'>
 						<div>

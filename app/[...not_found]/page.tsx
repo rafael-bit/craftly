@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const NotFound = () => {
@@ -32,12 +33,12 @@ const NotFound = () => {
 						It looks like you got lost in space...
 					</p>
 					<div className="mt-16">
-						<a
+						<Link
 							href="/"
 								className="px-6 py-3 animate-text bg-gradient-to-r from-blue-700 via-blue-900 to-blue-950 text-white rounded-full shadow-lg transition-all duration-300"
 						>
 							Back to home page
-						</a>
+						</Link>
 					</div>
 				</div>
 			)}

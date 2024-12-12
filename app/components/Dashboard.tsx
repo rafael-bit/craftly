@@ -191,7 +191,7 @@ export default function Dashboard() {
 		}`;
 
 	return (
-		<div className="scrollbar">
+		<div key="dash-1" className="scrollbar">
 			<button
 				onClick={() => setIsCodeVisible(!isCodeVisible)}
 				className="mb-3 flex items-center justify-around p-2 text-sm bg-neutral-900 hover:bg-neutral-800 transition-all duration-300 text-white rounded shadow-md"
@@ -225,7 +225,7 @@ export default function Dashboard() {
 					</div>
 				</div>
 			)}
-			<div key="dash-1" className="flex flex-col items-center bg-primary p-7">
+			<div className="flex flex-col items-center bg-primary p-7">
 				<div className="flex flex-wrap md:flex-nowrap mb-4 w-full bg-primary">
 					<div className="border border-neutral-800 shadow bg-primary rounded-lg h-40 md:h-56 p-7 hover:bg-hover transition-all duration-300 w-5/6 mx-3">
 						<h1 className="text-primary flex justify-between items-center text-2xl font-bold">
