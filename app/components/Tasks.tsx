@@ -23,146 +23,101 @@ export default function Tasks() {
 	const [isCodeVisible, setIsCodeVisible] = useState(false);
 
 	const componentCode = `
-      		import { RiProgress1Line, RiProgress4Line, RiProgress8Line } from "react-icons/ri";
-			import { FaRegTimesCircle, FaRegArrowAltCircleDown, FaRegArrowAltCircleRight, FaRegArrowAltCircleUp } from "react-icons/fa";
-			import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
-			import { RiCodeBoxLine } from "react-icons/ri";
-			import { useEffect, useRef, useState } from "react";
+    import { IoIosClose } from "react-icons/io";
+		import { RiProgress1Line, RiProgress4Line, RiProgress8Line } from "react-icons/ri";
+		import { FaRegTimesCircle, FaRegArrowAltCircleDown, FaRegArrowAltCircleRight, FaRegArrowAltCircleUp } from "react-icons/fa";
+		import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
+		import { RiCodeBoxLine } from "react-icons/ri";
+		import { useState } from "react";
+		import SyntaxHighlighter from "react-syntax-highlighter";
+		import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
-			type Task = {
-				id: number;
-				title: string;
-				status: "todo" | "inProgress" | "done" | "canceled";
-				priority: "low" | "medium" | "high";
+		type Task = {
+			id: number;
+			title: string;
+			status: "todo" | "inProgress" | "done" | "canceled";
+			priority: "low" | "medium" | "high";
+		};
+
+		export default function Tasks() {
+			const [filterText, setFilterText] = useState("");
+			const [visibleTaskCount, setVisibleTaskCount] = useState(5);
+			const [isModalOpen, setIsModalOpen] = useState(false);
+			const [taskBeingEdited, setTaskBeingEdited] = useState<Task | null>(null);
+			const [newTask, setNewTask] = useState<Pick<Task, "title" | "status" | "priority">>({
+				title: "",
+				status: "todo",
+				priority: "low",
+			});
+
+			const [tasks, setTasks] = useState<Task[]>([
+				{ id: 1, title: "Task 1", status: "todo", priority: "low" },
+				{ id: 2, title: "Task 2", status: "inProgress", priority: "medium" },
+				{ id: 3, title: "Task 3", status: "done", priority: "high" },
+				{ id: 4, title: "Task 4", status: "canceled", priority: "low" },
+			]);
+
+			const [selectedStatus, setSelectedStatus] = useState({
+				todo: false,
+				inProgress: false,
+				done: false,
+				canceled: false,
+			});
+
+			const [selectedPriority, setSelectedPriority] = useState({
+				low: false,
+				medium: false,
+				high: false,
+			});
+
+			const addTask = () => {
+				if (newTask.title.trim() === "") return;
+				const newId = tasks.length > 0 ? Math.max(...tasks.map((task) => task.id)) + 1 : 1;
+				setTasks((prevTasks) => [...prevTasks, { ...newTask, id: newId }]);
+				setNewTask({ title: "", status: "todo", priority: "low" });
+				setIsModalOpen(false);
 			};
 
-			export default function Tasks() {
-				const [isVisible, setIsVisible] = useState(false);
-				const [filterText, setFilterText] = useState("");
-				const [visibleTaskCount, setVisibleTaskCount] = useState(5);
-				const ref = useRef<HTMLDivElement>(null);
-				const [isModalOpen, setIsModalOpen] = useState(false);
-				const [taskBeingEdited, setTaskBeingEdited] = useState<Task | null>(null);
+			const updateTask = (updatedTask: Task) => {
+				setTasks((prevTasks) =>
+					prevTasks.map((task) =>
+						task.id === updatedTask.id ? updatedTask : task
+					)
+				);
+				setTaskBeingEdited(null);
+			};
 
-				const [newTask, setNewTask] = useState<Pick<Task, "title" | "status" | "priority">>({
-					title: "",
-					status: "todo",
-					priority: "low",
-				});
+			const handleStatusChange = (event: React.ChangeEvent<HTMLInputElement>, status: keyof typeof selectedStatus) => {
+				setSelectedStatus((prev) => ({ ...prev, [status]: event.target.checked }));
+			};
 
-				const [tasks, setTasks] = useState<Task[]>([
-					{ id: 1, title: "Task 1", status: "todo", priority: "low" },
-					{ id: 2, title: "Task 2", status: "inProgress", priority: "medium" },
-					{ id: 3, title: "Task 3", status: "done", priority: "high" },
-					{ id: 4, title: "Task 4", status: "canceled", priority: "low" },
-				]);
+			const filteredTasks = tasks.filter((task) => {
+				const titleMatch = task.title.toLowerCase().includes(filterText.toLowerCase());
 
-				const [selectedStatus, setSelectedStatus] = useState({
-					todo: false,
-					inProgress: false,
-					done: false,
-					canceled: false,
-				});
+				const statusMatch = Object.entries(selectedStatus).some(
+					([key, isSelected]) => isSelected && task.status === key
+				);
 
-				const [selectedPriority, setSelectedPriority] = useState({
-					low: false,
-					medium: false,
-					high: false,
-				});
+				const priorityMatch = Object.entries(selectedPriority).some(
+					([key, isSelected]) => isSelected && task.priority === key
+				);
 
-				const addTask = () => {
-					if (newTask.title.trim() === "") return;
-					const newId = tasks.length > 0 ? Math.max(...tasks.map((task) => task.id)) + 1 : 1;
-					setTasks((prevTasks) => [...prevTasks, { ...newTask, id: newId }]);
-					setNewTask({ title: "", status: "todo", priority: "low" });
-					setIsModalOpen(false);
-				};
+				return (
+					(titleMatch || !filterText) &&
+					(statusMatch || !Object.values(selectedStatus).includes(true)) &&
+					(priorityMatch || !Object.values(selectedPriority).includes(true))
+				);
+			});
 
-				const updateTask = (updatedTask: Task) => {
-					setTasks((prevTasks) =>
-						prevTasks.map((task) =>
-							task.id === updatedTask.id ? updatedTask : task
-						)
-					);
-					setTaskBeingEdited(null);
-				};
+			const deleteTask = (id: number) => {
+				setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+			};
 
-				const handleStatusChange = (event: React.ChangeEvent<HTMLInputElement>, status: keyof typeof selectedStatus) => {
-					setSelectedStatus((prev) => ({ ...prev, [status]: event.target.checked }));
-				};
+			const limitedTasks = filteredTasks.slice(0, visibleTaskCount);
 
-				const filteredTasks = tasks.filter((task) => {
-					const titleMatch = task.title.toLowerCase().includes(filterText.toLowerCase());
-
-					const statusMatch = Object.entries(selectedStatus).some(
-						([key, isSelected]) => isSelected && task.status === key
-					);
-
-					const priorityMatch = Object.entries(selectedPriority).some(
-						([key, isSelected]) => isSelected && task.priority === key
-					);
-
-					return (
-						(titleMatch || !filterText) &&
-						(statusMatch || !Object.values(selectedStatus).includes(true)) &&
-						(priorityMatch || !Object.values(selectedPriority).includes(true))
-					);
-				});
-
-				const deleteTask = (id: number) => {
-					setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
-				};
-
-				const [selectedLinks, setSelectedLinks] = useState({
-					todo: false,
-					inProgress: false,
-					done: false,
-					canceled: false,
-				});
-
-				const limitedTasks = filteredTasks.slice(0, visibleTaskCount);
-
-				useEffect(() => {
-					const observer = new IntersectionObserver(
-						([entry]) => {
-							if (entry.isIntersecting) {
-								setIsVisible(true);
-							}
-						},
-						{ threshold: 0.1 }
-					);
-
-					if (ref.current) {
-						observer.observe(ref.current);
-					}
-
-					return () => {
-						if (ref.current) {
-							observer.unobserve(ref.current);
-						}
-					};
-				}, []);
-
-				return(
-					<div className="relative w-3/4 mx-auto mt-10 p-4 bg-neutral-950 rounded-md shadow-md">
-						{isCodeVisible && (
-							<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-								<div className="bg-zinc-900 rounded-lg shadow-lg p-6 w-3/4 overflow-auto">
-									<button
-										onClick={() => setIsCodeVisible(false)}
-										className="absolute top-4 right-6 text-gray-200 hover:text-gray-100"
-									>
-										<IoIosClose size={24} />
-									</button>
-									<h2 className="text-lg font-bold text-gray-100 mb-4">
-										Component Code
-									</h2>
-									<SyntaxHighlighter language="typescript" style={nightOwl}>
-										{componentCode}
-									</SyntaxHighlighter>
-								</div>
-							</div>
-						)}
+			return (
+				<div className="scrollbar">
+					<div className="relative w-3/4 mx-auto mt-10 p-4 bg-primary rounded-md shadow-md">
 						<h1 className="text-2xl font-bold text-gray-100 mb-4">
 							Task Manager
 						</h1>
@@ -191,7 +146,7 @@ export default function Tasks() {
 											placeholder="Task Title"
 											value={newTask.title}
 											onChange={(e) => setNewTask((prev) => ({ ...prev, title: e.target.value }))}
-											className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-neutral-100 border-zinc-800"
+											className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
 										/>
 										<select
 											value={newTask.status}
@@ -201,7 +156,7 @@ export default function Tasks() {
 													status: e.target.value as Task["status"],
 												}))
 											}
-											className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-neutral-100 border-zinc-800"
+											className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
 										>
 											<option value="todo">To Do</option>
 											<option value="inProgress">In Progress</option>
@@ -217,7 +172,7 @@ export default function Tasks() {
 													priority: e.target.value as Task["priority"],
 												}))
 											}
-											className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-neutral-100 border-zinc-800"
+											className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
 										>
 											<option value="low">Low</option>
 											<option value="medium">Medium</option>
@@ -252,7 +207,7 @@ export default function Tasks() {
 											</PopoverButton>
 											<PopoverPanel
 												transition
-												className="absolute z-[10000] mt-3 w-44 overflow-hidden bg-neutral-950 rounded-xl shadow-lg ring-1 ring-gray-300/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in px-2 py-3 text-neutral-900"
+												className="absolute z-[10000] mt-3 w-44 overflow-hidden bg-primary rounded-xl shadow-lg ring-1 ring-gray-300/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in px-2 py-3 text-primary"
 											>
 												<div className="flex flex-col gap-2">
 													{[
@@ -261,12 +216,12 @@ export default function Tasks() {
 														{ key: "done", label: "Done", icon: <RiProgress8Line /> },
 														{ key: "canceled", label: "Canceled", icon: <FaRegTimesCircle /> },
 													].map((status) => (
-														<label key={status.key} className="flex items-center gap-3 cursor-pointer hover:bg-neutral-900 px-2 py-1 rounded">
+														<label key={status.key} className="flex items-center gap-3 cursor-pointer hover:bg-hover px-2 py-1 rounded">
 															<input
 																type="checkbox"
 																checked={selectedStatus[status.key as keyof typeof selectedStatus]}
 																onChange={(e) => handleStatusChange(e, status.key as keyof typeof selectedStatus)}
-																className="appearance-none h-4 w-4 bg-neutral-950 border-2 border-neutral-500 rounded checked:bg-neutral-950 checked:after:content-['✓'] checked:border-neutral-500 checked:after:text-white checked:content-center checked:flex checked:items-center checked:justify-center checked:leading-none"
+																className="appearance-none h-4 w-4 bg-primary border-2 border-neutral-500 rounded checked:bg-primary checked:after:content-['✓'] checked:border-neutral-500 checked:after:text-white checked:content-center checked:flex checked:items-center checked:justify-center checked:leading-none"
 															/>
 															<span className="flex items-center gap-2">
 																{status.icon}
@@ -286,7 +241,7 @@ export default function Tasks() {
 											</PopoverButton>
 											<PopoverPanel
 												transition
-												className="absolute z-[10000] mt-3 w-40 overflow-hidden bg-neutral-950 rounded-xl shadow-lg ring-1 ring-gray-300/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in px-2 py-3 text-neutral-100"
+												className="absolute z-[10000] mt-3 w-40 overflow-hidden bg-primary rounded-xl shadow-lg ring-1 ring-gray-300/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in px-2 py-3 text-primary"
 											>
 												<div className="flex flex-col gap-2">
 													{[
@@ -304,7 +259,7 @@ export default function Tasks() {
 																		[priority.key]: e.target.checked,
 																	}))
 																}
-																className="appearance-none h-4 w-4 bg-neutral-950 border-2 border-neutral-500 rounded checked:bg-neutral-950 checked:after:content-['✓'] checked:border-neutral-500 checked:after:text-white checked:content-center checked:flex checked:items-center checked:justify-center checked:leading-none"
+																className="appearance-none h-4 w-4 bg-primary border-2 border-neutral-500 rounded checked:bg-primary checked:after:content-['✓'] checked:border-neutral-500 checked:after:text-white checked:content-center checked:flex checked:items-center checked:justify-center checked:leading-none"
 															/>
 															<span className="flex items-center gap-2">
 																{priority.icon}
@@ -346,24 +301,24 @@ export default function Tasks() {
 							<table className="w-full border-collapse">
 								{filteredTasks.slice(0, visibleTaskCount).length > 0 ? (
 									<>
-										<thead className="bg-neutral-950 hover:bg-neutral-900">
+										<thead className="bg-primary hover:bg-hover">
 											<tr>
-												<th className="px-4 py-2 text-sm font-medium text-neutral-100 text-center">
+												<th className="px-4 py-2 text-sm font-medium text-primary text-center">
 													Title
 												</th>
-												<th className="px-4 py-2 text-sm font-medium text-neutral-100 text-center">
+												<th className="px-4 py-2 text-sm font-medium text-primary text-center">
 													Status
 												</th>
-												<th className="px-4 py-2 text-sm font-medium text-neutral-100 text-center">
+												<th className="px-4 py-2 text-sm font-medium text-primary text-center">
 													Priority
 												</th>
 												<th className="px-4 py-2 text-sm font-medium"></th>
 											</tr>
 										</thead>
 										<tbody>
-											{filteredTasks.slice(0, visibleTaskCount).map((task, rowIndex) => (
+											{limitedTasks.map((task) => (
 												<tr
-													className="bg-neutral-950 hover:bg-neutral-900"
+													className="bg-primary hover:bg-hover"
 													key={task.id}
 												>
 													<td className="px-4 py-2 text-sm text-gray-600 text-center">
@@ -378,7 +333,7 @@ export default function Tasks() {
 													<td className="px-4 py-2 text-sm text-gray-600 text-right flex justify-end">
 														<Popover className="relative">
 															<PopoverButton
-																className="flex items-center outline-none px-2 py-0.5 rounded-lg text-neutral-100 hover:text-neutral-50 text-sm transition-all duration-300 transform hover:-translate-y-0.5"
+																className="flex items-center outline-none px-2 py-0.5 rounded-lg text-primary hover:text-hover text-sm transition-all duration-300 transform hover:-translate-y-0.5"
 															>
 																<svg
 																	xmlns="http://www.w3.org/2000/svg"
@@ -396,16 +351,16 @@ export default function Tasks() {
 																	<circle cx="5" cy="12" r="1"></circle>
 																</svg>
 															</PopoverButton>
-															<PopoverPanel className="absolute z-10 mt-2 w-40 bg-neutral-950 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+															<PopoverPanel className="absolute z-10 mt-2 w-40 bg-primary rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
 																<ul className="p-2">
 																	<li
-																		className="flex items-center cursor-pointer gap-2 px-4 py-2 hover:bg-hover rounded-md text-neutral-100"
+																		className="flex items-center cursor-pointer gap-2 px-4 py-2 hover:bg-hover rounded-md text-primary"
 																		onClick={() => setTaskBeingEdited(task)}
 																	>
 																		Edit Task
 																	</li>
 																	<li
-																		className="flex items-center cursor-pointer gap-2 px-4 py-2 hover:bg-hover rounded-md text-neutral-100"
+																		className="flex items-center cursor-pointer gap-2 px-4 py-2 hover:bg-hover rounded-md text-primary"
 																		onClick={() => deleteTask(task.id)}
 																	>
 																		Delete Task
@@ -423,7 +378,7 @@ export default function Tasks() {
 																							prev ? { ...prev, title: e.target.value } : null
 																						)
 																					}
-																					className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-neutral-100 border-zinc-800"
+																					className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
 																				/>
 																				<select
 																					value={taskBeingEdited.status}
@@ -432,7 +387,7 @@ export default function Tasks() {
 																							prev ? { ...prev, status: e.target.value as Task["status"] } : null
 																						)
 																					}
-																					className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-neutral-100 border-zinc-800"
+																					className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
 																				>
 																					<option value="todo">To Do</option>
 																					<option value="inProgress">In Progress</option>
@@ -446,7 +401,7 @@ export default function Tasks() {
 																							prev ? { ...prev, priority: e.target.value as Task["priority"] } : null
 																						)
 																					}
-																					className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-neutral-100 border-zinc-800"
+																					className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
 																				>
 																					<option value="low">Low</option>
 																					<option value="medium">Medium</option>
@@ -455,7 +410,7 @@ export default function Tasks() {
 																				<div className="flex justify-end gap-2">
 																					<button
 																						onClick={() => setTaskBeingEdited(null)}
-																						className="px-4 py-2 rounded bg-red-700 hover:bg-red-600 transition-all text-neutral-100 hover:text-neutral-50 duration-200"
+																						className="px-4 py-2 rounded bg-red-700 hover:bg-red-600 transition-all text-primary hover:text-hover duration-200"
 																					>
 																						Cancel
 																					</button>
@@ -463,7 +418,7 @@ export default function Tasks() {
 																						onClick={() => {
 																							if (taskBeingEdited) updateTask(taskBeingEdited);
 																						}}
-																						className="px-4 py-2 bg-gray-800 rounded hover:bg-gray-700 text-neutral-100 hover:text-neutral-50 transition-all duration-200"
+																						className="px-4 py-2 bg-gray-800 rounded hover:bg-gray-700 text-primary hover:text-hover transition-all duration-200"
 																					>
 																						Save Task
 																					</button>
@@ -485,7 +440,10 @@ export default function Tasks() {
 							</table>
 						</div>
 					</div>
-				)`;
+				</div>
+			)
+		}
+			`;
 
 	const [newTask, setNewTask] = useState<Pick<Task, "title" | "status" | "priority">>({
 		title: "",
