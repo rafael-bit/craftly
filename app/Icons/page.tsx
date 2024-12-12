@@ -71,7 +71,7 @@ const IconSearch: React.FC = () => {
 						return (
 							<div
 								key={key}
-								className="cursor-pointer flex flex-col items-center justify-center text-center p-4 border border-neutral-500 rounded-lg hover:shadow-md transition-shadow"
+								className="cursor-pointer flex flex-col items-center justify-center text-center p-4 border border-neutral-600 rounded-lg hover:shadow-md transition-all duration-300 hover:-translate-y-2"
 								onClick={() => handleIconClick(library, key)}
 							>
 								<IconContext.Provider value={{ size: "2em" }}>
@@ -112,10 +112,13 @@ const IconSearch: React.FC = () => {
 								<AiOutlineClose />
 							</button>
 						</h2>
+						<p className="my-4">Install Library</p>
+						<pre className="bg-hover p-4 rounded-md text-sm overflow-auto">npm install react-icons</pre>
+						<p className="my-4">Import in your project</p>
 						<pre className="bg-hover p-4 rounded-md text-sm overflow-auto">
 							{`import { ${selectedIcon} } from "react-icons/${selectedLibrary}";`}
 						</pre>
-						<p className="mt-4">Use the icon in your component:</p>
+						<p className="my-4">Use the icon in your component:</p>
 						<pre className="bg-hover p-4 rounded-md text-sm overflow-auto">
 							{`<${selectedIcon} />`}
 						</pre>
