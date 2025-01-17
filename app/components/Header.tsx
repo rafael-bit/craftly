@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import {
 	Dialog,
 	DialogPanel
@@ -12,9 +13,18 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 
+const navigation = [
+	{ name: 'Home', href: '/' },
+	{ name: 'Components', href: '/component' },
+	{ name: 'Icons', href: '/icons' },
+	{ name: 'Colors', href: '/colors' },
+]
+
 export default function Header() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 	const [isVisible, setIsVisible] = useState(false);
+
+	const pathname = usePathname();
 
 	useEffect(() => {
 		setIsVisible(true);
@@ -50,33 +60,22 @@ export default function Header() {
 					</button>
 				</div>
 				<div className="hidden sm:flex justify-between gap-4">
-					<Link
-						href="/"
-						className={`text-sm/6 font-semibold text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-							} delay-[50ms]`}
-					>
-						Home
-					</Link>
-					<Link
-						href="/component"
-						className={`outline-none flex items-center gap-x-1 text-sm/6 font-semibold text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-							} delay-[50ms]`}
-					>Components
-					</Link>
-					<Link
-						href="/Icons"
-						className={`text-sm/6 font-semibold text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-							} delay-[50ms]`}
-					>
-						Icons
-					</Link>
-					<Link
-						href="/colors"
-						className={`text-sm/6 font-semibold text-primary transition-all duration-300 transform hover:-translate-y-1 hover:text-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-							} delay-[50ms]`}
-					>
-						Colors
-					</Link>
+					{navigation.map((item) => {
+						const isActive = pathname === item.href;
+
+						return (
+							<Link
+								key={item.name}
+								href={item.href}
+								className={`text-sm/6 font-semibold transition-all duration-300 transform
+        				${isActive ? 'text-hover -translate-y-1' : 'text-primary opacity-80'}
+        				${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}
+        				hover:-translate-y-1 hover:text-hover delay-[50ms]`}
+							>
+								{item.name}
+							</Link>
+						)
+					})}
 				</div>
 			</nav>
 			<Dialog open={mobileMenuOpen} onClose={handleCloseMenu} className="fixed inset-0 z-10 bg-black bg-opacity-50">
@@ -100,7 +99,7 @@ export default function Header() {
 						<div className="space-y-3">
 							<Link href="/" onClick={handleCloseMenu} className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Home</Link>
 							<Link href="/component" onClick={handleCloseMenu} className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Components</Link>
-							<Link href="Icons" onClick={handleCloseMenu} className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Icons</Link>
+							<Link href="/icons" onClick={handleCloseMenu} className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Icons</Link>
 							<Link href="/colors" onClick={handleCloseMenu} className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Colors</Link>
 						</div>
 					</DialogPanel>
