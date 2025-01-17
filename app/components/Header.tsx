@@ -16,7 +16,7 @@ import Link from 'next/link'
 const navigation = [
 	{ name: 'Home', href: '/' },
 	{ name: 'Components', href: '/component' },
-	{ name: 'Icons', href: '/icons' },
+	{ name: 'Icons', href: '/Icons' },
 	{ name: 'Colors', href: '/colors' },
 ]
 
