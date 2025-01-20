@@ -1,7 +1,5 @@
 import { MdOutlineExpandMore, MdOutlineExpandLess, MdAccountBalance } from "react-icons/md";
 import { RxAvatar } from "react-icons/rx";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { Bar } from 'react-chartjs-2';
 import {
 	Chart as ChartJS,
@@ -12,14 +10,11 @@ import {
 	Tooltip,
 	Legend,
 } from 'chart.js';
-import { RiCodeBoxLine } from "react-icons/ri";
-import { IoIosClose } from "react-icons/io";
-import { useState } from "react";
+import CodeViewer from "./ui/codeViewer";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function Dashboard() {
-	const [isCodeVisible, setIsCodeVisible] = useState(false);
 	const data = {
 		labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 		datasets: [
@@ -192,39 +187,8 @@ export default function Dashboard() {
 
 	return (
 		<div key="dash-1" className="scrollbar">
-			<button
-				onClick={() => setIsCodeVisible(!isCodeVisible)}
-				className="mb-3 flex items-center justify-around p-2 text-sm bg-neutral-900 hover:bg-neutral-800 transition-all duration-300 text-white rounded shadow-md"
-			>
-				<RiCodeBoxLine size={24} />
-				{isCodeVisible ? "Hide Code" : "View Code"}
-			</button>
-			{isCodeVisible && (
-				<div
-					className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-				>
-					<div className="bg-zinc-900 rounded-lg shadow-lg p-6 w-3/4 h-2/3 overflow-auto">
-						<button
-							onClick={() => setIsCodeVisible(false)}
-							className="absolute top-4 right-6 text-gray-200 hover:text-gray-100"
-						>
-							<IoIosClose size={24} />
-						</button>
-						<h2 className=" flex justify-between items-center text-lg font-bold text-gray-100 mb-4">
-							Component Code
-							<button
-								onClick={() => navigator.clipboard.writeText(componentCode)}
-								className="bg-neutral-950 hover:bg-neutral-800 transition-all duration-300 text-white py-2 px-4 rounded-md mb-4"
-							>
-								Copy Code
-							</button>
-						</h2>
-						<SyntaxHighlighter language="typescript" style={nightOwl}>
-							{componentCode}
-						</SyntaxHighlighter>
-					</div>
-				</div>
-			)}
+			<CodeViewer componentCode={componentCode} />
+
 			<div className="flex flex-col items-center bg-primary p-7">
 				<div className="flex flex-wrap md:flex-nowrap mb-4 w-full bg-primary">
 					<div className="border border-neutral-800 shadow bg-primary rounded-lg h-40 md:h-56 p-7 hover:bg-hover transition-all duration-300 w-5/6 mx-3">

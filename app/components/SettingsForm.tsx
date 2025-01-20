@@ -1,14 +1,10 @@
 import { useState } from "react";
-import { IoIosClose } from "react-icons/io";
-import { RiCodeBoxLine } from "react-icons/ri";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import CodeViewer from "./ui/codeViewer";
 
 type SectionKey = "Profile" | "Appearance";
 
 export default function SettingsForm() {
 	const [activeSection, setActiveSection] = useState<SectionKey>("Profile");
-	const [isCodeVisible, setIsCodeVisible] = useState(false);
 
 	const componentCode = `
 		import { IoIosClose } from "react-icons/io";
@@ -217,14 +213,8 @@ export default function SettingsForm() {
 
 	return (
 		<div>
-			<button
-				onClick={() => setIsCodeVisible(!isCodeVisible)}
-				className="mb-3 flex items-center justify-around p-2 text-sm bg-neutral-900 hover:bg-neutral-800 transition-all duration-300 text-white rounded shadow-md"
-			>
-				<RiCodeBoxLine size={24} />
-				{isCodeVisible ? "Hide Code" : "View Code"}
-			</button>
-			{isCodeVisible && renderCodeModal()}
+			<CodeViewer componentCode={componentCode} />
+
 			<div className="w-full flex justify-center bg-primary py-10">
 				<div className="w-5/6">
 					<header>
@@ -269,33 +259,6 @@ export default function SettingsForm() {
 					))}
 				</select>
 				<span className="text-neutral-400 text-xs pt-2">{helperText}</span>
-			</div>
-		);
-	}
-
-	function renderCodeModal() {
-		return (
-			<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-				<div className="bg-zinc-900 rounded-lg shadow-lg p-6 w-3/4 h-2/3 overflow-auto relative">
-					<button
-						onClick={() => setIsCodeVisible(false)}
-						className="absolute top-4 right-6 text-gray-200 hover:text-gray-100"
-					>
-						<IoIosClose size={24} />
-					</button>
-					<div className="flex justify-between items-center mb-4">
-						<h2 className="text-lg font-bold text-gray-100">Component Code</h2>
-						<button
-							onClick={() => navigator.clipboard.writeText(componentCode)}
-							className="bg-neutral-950 hover:bg-neutral-800 transition-all duration-300 text-white py-2 px-4 rounded-md"
-						>
-							Copy Code
-						</button>
-					</div>
-					<SyntaxHighlighter language="typescript" style={nightOwl}>
-						{componentCode}
-					</SyntaxHighlighter>
-				</div>
 			</div>
 		);
 	}
