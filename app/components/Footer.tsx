@@ -14,31 +14,36 @@ export default function Footer() {
 
 	return (
 		<footer
-			id="footer"
-			className={`bg-primary w-[95%] mx-auto rounded-3xl shadow-2xl transform opacity-0 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'translate-y-5'
-				}`}
+			className={`bg-primary w-[95%] mx-auto rounded-3xl shadow-2xl transform transition-all duration-700 ease-out 
+        ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+			aria-label="Footer"
 		>
-			<div className="text-center py-1 flex items-center justify-around">
-				<Image
-					src="/logo-noBorder.png"
-					alt="Craftly logo"
-					width={100}
-					height={100}
-					className="w-16 h-16"
-				/>
-
+			<div className="text-center py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+				<div>
+					<Image
+						src="/logo-noBorder.png"
+						alt="Craftly logo"
+						width={64}
+						height={64}
+						className="w-16 h-16"
+						priority
+					/>
+				</div>
 				<p className="text-xs leading-5 text-gray-300">
 					<span className="hidden sm:inline">&copy; 2024 Craftly. All rights reserved.</span>
 					<span className="sm:hidden">&copy; 2024 Craftly.</span>
 				</p>
-
-				<Link href="/privacy" className="flex flex-col items-center gap-2">
+				<Link
+					href="https://github.com/rafael-bit"
+					className="flex flex-col items-center gap-1"
+					aria-label="Visit Rafael Áquila's GitHub"
+				>
 					<FaGithub
-						className="w-8 h-8 transform duration-300 hover:scale-110"
+						className="w-8 h-8 transform duration-300 hover:scale-110 text-gray-300"
 					/>
-					<p className="text-xs leading-5 text-primary hover:underline hover:text-hover">
-						Build by Rafael Áquila
-					</p>
+					<span className="text-xs leading-5 text-gray-300 hover:underline hover:text-hover">
+						Built by Rafael Áquila
+					</span>
 				</Link>
 			</div>
 		</footer>
