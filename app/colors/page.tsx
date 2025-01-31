@@ -55,7 +55,7 @@ const Colors: React.FC = () => {
 	};
 
 	return (
-		<div className="flex flex-col items-center justify-center h-[70vh] p-4">
+		<div className="flex flex-col items-center justify-center h-[70vh] p-4 text-primary">
 			<div className="shadow-md rounded-lg p-6 w-full h-full max-w-md">
 				<h1 className="text-2xl font-bold mb-4 text-center">Color Picker</h1>
 				<input

@@ -39,7 +39,7 @@ export default function Home() {
 
   return (
     <>
-      <div id="hero" className="w-[90%] xs:w-[95%] mx-auto m-5 flex items-center justify-center h-[75vh]">
+      <div id="hero" className="w-[90%] xs:w-[95%] mx-auto m-5 flex items-center justify-center h-[75vh] text-primary">
         <div
           className={`w-full flex items-start xs:justify-center transition-all duration-1000 ease-out ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}

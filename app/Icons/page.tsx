@@ -51,7 +51,7 @@ const IconSearch: React.FC = () => {
 	};
 
 	return (
-		<div className="flex flex-col items-center justify-center p-4">
+		<div className="flex flex-col items-center justify-center p-4 text-primary">
 			<div className="w-full max-w-3xl bg-hover shadow-md rounded-lg p-6">
 				<h1 className="text-2xl font-bold text-center mb-4">Icons Search</h1>
 				<input
