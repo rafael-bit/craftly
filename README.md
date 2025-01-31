@@ -30,8 +30,8 @@ git clone https://github.com/rafael-bit/craftly
 #### Install dependencies and run the application in development mode
 
 ```bash
-	yarn
-	yarn dev
+yarn
+yarn dev
 ```
 
 Open this adress in your navegation: [Craftly](http://craftlys.vercel.app/)
