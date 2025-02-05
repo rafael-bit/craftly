@@ -1,12 +1,16 @@
 'use client'
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { IconContext } from "react-icons";
 import * as FaIcons from "react-icons/fa";
 import * as MdIcons from "react-icons/md";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
-import { AiOutlineClose } from "react-icons/ai";
+import * as BsIcons from "react-icons/bs";
+import * as FiIcons from "react-icons/fi";
+import * as HiIcons from "react-icons/hi";
+import * as RiIcons from "react-icons/ri";
+import * as BiIcons from "react-icons/bi";
 
 const IconSearch: React.FC = () => {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -19,6 +23,9 @@ const IconSearch: React.FC = () => {
 		md: MdIcons,
 		ai: AiIcons,
 		io: IoIcons,
+		hi: HiIcons,
+		ri: RiIcons,
+		bi: BiIcons,
 	};
 
 	const iconKeys = Object.entries(allIcons)
@@ -109,7 +116,7 @@ const IconSearch: React.FC = () => {
 								onClick={handleCloseModal}
 								className="mt-4 px-4 py-2 text-primary rounded-md hover:bg-hover transition"
 							>
-								<AiOutlineClose />
+								<AiIcons.AiOutlineClose />
 							</button>
 						</h2>
 						<p className="my-4">Install Library</p>
