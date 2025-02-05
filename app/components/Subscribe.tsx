@@ -5,7 +5,7 @@ import { useFormStatus } from 'react-dom';
 import { subscribeToEmailList } from "@/app/lib/actions/newslatter.action";
 
 export default function SubscribeToEmailList() {
-	const [state, action, pending] = useActionState(subscribeToEmailList, undefined);
+	const [state, action] = useActionState(subscribeToEmailList, undefined);
 
 	return (
 		<form
