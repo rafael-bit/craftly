@@ -23,6 +23,8 @@ const IconSearch: React.FC = () => {
 		md: MdIcons,
 		ai: AiIcons,
 		io: IoIcons,
+		bs: BsIcons,
+		fi: FiIcons,
 		hi: HiIcons,
 		ri: RiIcons,
 		bi: BiIcons,

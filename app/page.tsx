@@ -4,34 +4,10 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { PlayCircleIcon } from "@heroicons/react/20/solid";
 import { SiAzuredataexplorer } from "react-icons/si";
+import Subscribe from "./components/Subscribe";
 
 export default function Home() {
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch('/api/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        setMessage('Email sent successfully!');
-        setEmail('');
-      } else {
-        setMessage(`Error: ${data.message}`);
-      }
-    } catch (error) {
-      console.error(error);
-      setMessage('An error occurred while sending the email.');
-    }
-  };
 
   useEffect(() => {
     setIsLoaded(true);
@@ -92,22 +68,7 @@ export default function Home() {
             Do you want to be notified when a new component is added to Craftly? Sign up for our newsletter and you’ll
             be among the first to find out about new features.
           </p>
-          <form onSubmit={handleSubmit} className="w-full max-w-md">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              className="outline-none border border-neutral-600 rounded-lg text-sm bg-neutral-800 text-primary p-2 w-full"
-            />
-            <button
-              type="submit"
-              className="mt-4 bg-blue-700 hover:bg-blue-600 text-white p-2 rounded-lg w-full"
-            >
-              Sign Up
-            </button>
-          </form>
-          {message && <p className="mt-4 text-sm text-green-500">{message}</p>}
+          <Subscribe />
         </div>
       </div>
     </>
