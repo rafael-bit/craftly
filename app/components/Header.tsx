@@ -18,6 +18,7 @@ const navigation = [
 	{ name: 'Components', href: '/component' },
 	{ name: 'Icons', href: '/Icons' },
 	{ name: 'Colors', href: '/colors' },
+	{ name: 'Grid Generator', href: '/gridGenerator' },
 ]
 
 export default function Header() {
