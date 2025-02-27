@@ -22,13 +22,9 @@ export default function GridGenerator() {
     setLayout(newLayout);
   }, [cols, rows]);
 
-  const generateTailwindGrid = () => {
-    return `grid grid-cols-${cols} gap-2`;
-  };
-
   const generateHTMLGrid = () => {
-    return `<div class=\"${generateTailwindGrid()}\">
-${layout.map(item => `  <div class=\"bg-blue-500 text-white flex items-center justify-center rounded shadow-lg\">${item.i}</div>`).join("\n")}  
+    return `<div class=\"grid gap-2\" style=\"display: grid; grid-template-columns: repeat(${cols}, minmax(0, 1fr)); grid-auto-rows: 50px;\">
+${layout.map(item => `  <div class=\"bg-blue-500 text-white flex items-center justify-center rounded shadow-lg\" style=\"grid-column: ${item.x + 1} / span ${item.w}; grid-row: ${item.y + 1} / span ${item.h};\">${item.i}</div>`).join("\n")}  
 </div>`;
   };
 
@@ -42,7 +38,7 @@ ${layout.map(item => `  <div class=\"bg-blue-500 text-white flex items-center ju
             type="number"
             value={cols}
             onChange={(e) => setCols(Number(e.target.value))}
-            className="bg-background ml-2 p-1 border rounded"
+            className="bg-background ml-2 p-1 border rounded text-center"
           />
         </label>
         <label>
@@ -51,12 +47,12 @@ ${layout.map(item => `  <div class=\"bg-blue-500 text-white flex items-center ju
             type="number"
             value={rows}
             onChange={(e) => setRows(Number(e.target.value))}
-            className="bg-background ml-2 p-1 border rounded"
+            className="bg-background ml-2 p-1 border rounded text-center"
           />
         </label>
       </div>
       <GridLayout
-        className="bg-background/40 p-2 rounded"
+        className="p-2 rounded"
         layout={layout}
         cols={cols}
         rowHeight={50}
@@ -73,15 +69,7 @@ ${layout.map(item => `  <div class=\"bg-blue-500 text-white flex items-center ju
         ))}
       </GridLayout>
       <pre className="mt-4 p-2 bg-background rounded text-sm overflow-auto">
-        <h1 className="font-bold text-2xl mb-5 underline">Css Style</h1>
-        {`.${generateTailwindGrid()} {
-  display: grid;
-  grid-template-columns: repeat(${cols}, minmax(0, 1fr));
-  gap: 0.5rem;
-}`}
-      </pre>
-      <pre className="mt-4 p-2 bg-background rounded text-sm overflow-auto">
-        <h1 className="font-bold text-2xl mb-5 underline">HTML</h1>
+        <h1 className="text-2xl font-bold underline my-5">Código HTML</h1>
         {generateHTMLGrid()}
       </pre>
     </div>
