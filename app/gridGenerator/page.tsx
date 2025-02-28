@@ -23,7 +23,7 @@ export default function GridGenerator() {
   }, [cols, rows]);
 
   const generateHTMLGrid = () => {
-    return `<div class=\"grid gap-2\" style=\"display: grid; grid-template-columns: repeat(${cols}, minmax(0, 1fr)); grid-auto-rows: 50px;\">
+    return `<div style=\"display: grid; grid-template-columns: repeat(${cols}, minmax(0, 1fr)); grid-auto-rows: 50px; gap: 0.5rem\">
 ${layout.map(item => `  <div class=\"bg-blue-500 text-white flex items-center justify-center rounded shadow-lg\" style=\"grid-column: ${item.x + 1} / span ${item.w}; grid-row: ${item.y + 1} / span ${item.h};\">${item.i}</div>`).join("\n")}  
 </div>`;
   };
