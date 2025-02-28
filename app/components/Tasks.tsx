@@ -65,7 +65,7 @@ function useTasks(initialTasks: Task[] = []) {
 
 	// Apply filters
 	const filteredTasks = tasks.filter(task => {
-		const titleMatch = task.title.toLowerCase().includes(filterText.toLowerCase());
+				const titleMatch = task.title.toLowerCase().includes(filterText.toLowerCase());
 		const statusMatch = Object.entries(filters.status)
 			.some(([key, selected]) => selected && task.status === key);
 		const priorityMatch = Object.entries(filters.priority)
@@ -113,52 +113,52 @@ function TaskModal({ isOpen, onClose, onSubmit, initialData, mode }: {
 		onClose();
 	};
 
-	return (
-		<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-			<div className="bg-zinc-950 rounded-md p-6 w-96">
+			return (
+								<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+									<div className="bg-zinc-950 rounded-md p-6 w-96">
 				<h2 className="text-lg font-bold mb-4">{mode === "add" ? "Add New Task" : "Edit Task"}</h2>
-				<input
-					type="text"
-					placeholder="Task Title"
+										<input
+											type="text"
+											placeholder="Task Title"
 					value={taskData.title}
 					onChange={(e) => setTaskData((prev) => ({ ...prev, title: e.target.value }))}
-					className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
-				/>
-				<select
+											className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
+										/>
+										<select
 					value={taskData.status}
 					onChange={(e) => setTaskData((prev) => ({ ...prev, status: e.target.value as Task["status"] }))}
-					className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
-				>
-					<option value="todo">To Do</option>
-					<option value="inProgress">In Progress</option>
-					<option value="done">Done</option>
-					<option value="canceled">Canceled</option>
-				</select>
-				<select
+											className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
+										>
+											<option value="todo">To Do</option>
+											<option value="inProgress">In Progress</option>
+											<option value="done">Done</option>
+											<option value="canceled">Canceled</option>
+										</select>
+										<select
 					value={taskData.priority}
 					onChange={(e) => setTaskData((prev) => ({ ...prev, priority: e.target.value as Task["priority"] }))}
-					className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
-				>
-					<option value="low">Low</option>
-					<option value="medium">Medium</option>
-					<option value="high">High</option>
-				</select>
-				<div className="flex justify-end gap-2">
-					<button
+											className="w-full px-3 py-2 mb-4 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 bg-zinc-900 text-primary border-zinc-800"
+										>
+											<option value="low">Low</option>
+											<option value="medium">Medium</option>
+											<option value="high">High</option>
+										</select>
+										<div className="flex justify-end gap-2">
+											<button
 						onClick={onClose}
-						className="px-4 py-2 rounded bg-red-700 hover:bg-red-600 transition-all duration-200"
-					>
-						Cancel
-					</button>
-					<button
+												className="px-4 py-2 rounded bg-red-700 hover:bg-red-600 transition-all duration-200"
+											>
+												Cancel
+											</button>
+											<button
 						onClick={handleSubmit}
-						className="px-4 py-2 bg-gray-800 rounded hover:bg-gray-700 transition-all duration-200"
-					>
+												className="px-4 py-2 bg-gray-800 rounded hover:bg-gray-700 transition-all duration-200"
+											>
 						{mode === "add" ? "Add Task" : "Save Task"}
-					</button>
-				</div>
-			</div>
-		</div>
+											</button>
+										</div>
+									</div>
+								</div>
 	);
 };
 
@@ -172,45 +172,45 @@ export const TaskList = ({ tasks, onUpdateTask, onDeleteTask }: TaskListProps) =
 	const [taskBeingEdited, setTaskBeingEdited] = useState<Task | null>(null);
 
 	return (
-		<div className="w-full border border-neutral-700 rounded-xl p-1">
-			<table className="w-full border-collapse">
+						<div className="w-full border border-neutral-700 rounded-xl p-1">
+							<table className="w-full border-collapse">
 				{tasks.length > 0 ? (
-					<>
-						<thead className="bg-primary hover:bg-hover">
-							<tr>
+									<>
+										<thead className="bg-primary hover:bg-hover">
+											<tr>
 								<th className="px-4 py-2 text-sm font-medium text-primary text-center">Title</th>
 								<th className="px-4 py-2 text-sm font-medium text-primary text-center">Status</th>
 								<th className="px-4 py-2 text-sm font-medium text-primary text-center">Priority</th>
-								<th className="px-4 py-2 text-sm font-medium"></th>
-							</tr>
-						</thead>
-						<tbody>
+												<th className="px-4 py-2 text-sm font-medium"></th>
+											</tr>
+										</thead>
+										<tbody>
 							{tasks.map((task) => (
 								<tr className="bg-primary hover:bg-hover" key={task.id}>
-									<td className="px-4 py-2 text-sm text-gray-600 text-center">
-										<span>{task.title}</span>
-									</td>
-									<td className="px-4 py-2 text-sm text-gray-600 text-center">
-										<span className="text-sm text-gray-500">{task.status}</span>
-									</td>
-									<td className="px-4 py-2 text-sm text-gray-600 text-center">
-										<span className="text-sm text-gray-500">{task.priority}</span>
-									</td>
-									<td className="px-4 py-2 text-sm text-gray-600 text-right flex justify-end">
+													<td className="px-4 py-2 text-sm text-gray-600 text-center">
+														<span>{task.title}</span>
+													</td>
+													<td className="px-4 py-2 text-sm text-gray-600 text-center">
+														<span className="text-sm text-gray-500">{task.status}</span>
+													</td>
+													<td className="px-4 py-2 text-sm text-gray-600 text-center">
+														<span className="text-sm text-gray-500">{task.priority}</span>
+													</td>
+													<td className="px-4 py-2 text-sm text-gray-600 text-right flex justify-end">
 										<TaskActions
 											task={task}
 											onEdit={() => setTaskBeingEdited(task)}
 											onDelete={() => onDeleteTask(task.id)}
 										/>
-									</td>
-								</tr>
-							))}
-						</tbody>
-					</>
-				) : (
+													</td>
+												</tr>
+											))}
+										</tbody>
+									</>
+								) : (
 					<p className="text-center text-gray-500 py-4">No tasks found.</p>
-				)}
-			</table>
+								)}
+							</table>
 
 			<TaskModal
 				isOpen={!!taskBeingEdited}
@@ -224,7 +224,7 @@ export const TaskList = ({ tasks, onUpdateTask, onDeleteTask }: TaskListProps) =
 				initialData={taskBeingEdited || undefined}
 				mode="edit"
 			/>
-		</div>
+				</div>
 	);
 };
 
@@ -241,7 +241,7 @@ export const TaskFilters = ({
 	visibleTaskCount,
 	onVisibleTaskCountChange,
 }: TaskFiltersProps) => {
-	return (
+		return (
 		<div className="flex gap-2 w-full">
 			<div className="flex justify-around w-full">
 				<div className="flex gap-2">
