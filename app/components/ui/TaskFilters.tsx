@@ -118,7 +118,6 @@ const PriorityFilter = ({
 );
 
 const ViewFilter = ({
-	currentCount,
 	onCountChange,
 }: {
 	currentCount: number;
