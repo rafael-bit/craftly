@@ -36,7 +36,7 @@ export default function Header() {
 	};
 
 	return (
-		<header className="relative bg-primary bg-opacity-20 backdrop-blur-lg w-[95%] mx-auto rounded-3xl m-5 top-0  bg-primary/25 shadow-md z-50">
+		<header className="relative bg-primary bg-opacity-20 w-[95%] mx-auto rounded-3xl m-5 top-0  bg-primary/25 shadow-md z-50">
 			<nav aria-label="Header" className="mx-auto flex max-w-7xl items-center justify-between p-1 lg:px-8">
 				<div className={`flex lg:flex-1 transition-transform duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
 					<Link href="/" className="-m-1.5 p-1.5 flex items-center gap-5">
