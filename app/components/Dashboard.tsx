@@ -190,7 +190,7 @@ export default function Dashboard() {
 			<CodeViewer componentCode={componentCode} />
 
 			<div className="flex flex-col items-center bg-primary p-7">
-				<div className="flex flex-wrap md:flex-nowrap mb-4 w-full bg-primary">
+				<div className="flex items-center justify-center flex-wrap md:flex-nowrap mb-4 w-full bg-primary">
 					<div className="border border-neutral-800 shadow bg-primary rounded-lg h-40 md:h-56 p-7 hover:bg-hover transition-all duration-300 w-5/6 mx-3">
 						<h1 className="text-primary flex justify-between items-center text-2xl font-bold">
 							Income
@@ -223,15 +223,15 @@ export default function Dashboard() {
 				</div>
 				<div className="w-[98%] p-4 border border-neutral-800 shadow bg-primary rounded-lg">
 					<h2 className="text-primary text-2xl font-bold mb-7 px-1 pt-4">Dashboard</h2>
-					<div className="w-full flex justify-around h-72">
-						<Bar data={data} options={options} />
+					<div className="w-full md:flex justify-around">
+						<Bar data={data} options={options} className="md:!w-[50%] md:!h-[50%]"/>
 						<div>
-							<div className="p-2 -mt-7">
-								<div className="border rounded-xl border-neutral-700 p-2 max-h-96 overflow-y-scroll h-72 w-96 scrollbar">
+							<div className="p-2 md:-mt-7 mt-10">
+								<div className="border rounded-xl border-neutral-700 p-2 max-h-96 overflow-y-scroll h-56 lg:h-64 xl:h-72 lg:w-72 xl:w-96 scrollbar">
 									{tableData.map((item) => (
 										<div
 											key={item.id}
-											className="flex items-center gap-4 border-b border-neutral-800 hover:bg-neutral-950 transition-all duration-300 p-4"
+											className="flex items-center gap-4 border-b border-neutral-800 bg-neutral-950 transition-all duration-300 p-4"
 										>
 											<RxAvatar className="w-12 h-12" />
 											<div>
