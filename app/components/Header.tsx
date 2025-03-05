@@ -98,10 +98,17 @@ export default function Header() {
 						</div>
 
 						<div className="space-y-3">
-							<Link href="/" onClick={handleCloseMenu} className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Home</Link>
-							<Link href="/component" onClick={handleCloseMenu} className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Components</Link>
-							<Link href="/icons" onClick={handleCloseMenu} className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Icons</Link>
-							<Link href="/colors" onClick={handleCloseMenu} className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover">Colors</Link>
+							{navigation.map((item) => {
+								return (
+									<Link
+										key={item.name}
+										href={item.href}
+										className="block px-3 py-2 text-primary font-semibold rounded-lg hover:bg-hover hover:text-hover"
+									>
+										{item.name}
+									</Link>
+								)
+							})}
 						</div>
 					</DialogPanel>
 				</div>
