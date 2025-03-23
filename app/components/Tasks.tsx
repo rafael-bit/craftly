@@ -348,23 +348,24 @@ export default function Tasks() {
 			<div className="relative w-3/4 mx-auto mt-10 p-4 bg-primary rounded-md shadow-md">
 				<h1 className="text-2xl font-bold text-gray-100 mb-4">Task Manager</h1>
 
-				<div className="flex gap-2 mb-4 items-center">
-					<input
-						type="text"
-						placeholder="Filter Task"
-						value={filterText}
-						onChange={(e) => setFilterText(e.target.value)}
-						className="px-3 py-0.5 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-800 bg-zinc-900 text-gray-100 border-zinc-800"
-					/>
-					<button
-						className="text-neutral-300 hover:text-neutral-50"
-						onClick={() => setIsModalOpen(true)}
-					>
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-							<path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-						</svg>
-					</button>
-
+				<div className="md:flex gap-2 mb-4 items-center">
+					<div className="flex gap-2">
+						<input
+							type="text"
+							placeholder="Filter Task"
+							value={filterText}
+							onChange={(e) => setFilterText(e.target.value)}
+							className="px-3 py-0.5 border rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-800 bg-zinc-900 text-gray-100 border-zinc-800"
+						/>
+						<button
+							className="text-neutral-300 hover:text-neutral-50"
+							onClick={() => setIsModalOpen(true)}
+						>
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+								<path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+							</svg>
+						</button>
+					</div>
 					<TaskFilters
 						filters={filters}
 						onFilterChange={updateFilters}

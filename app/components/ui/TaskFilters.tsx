@@ -17,8 +17,8 @@ export const TaskFilters = ({
 	onVisibleTaskCountChange,
 }: TaskFiltersProps) => {
 	return (
-		<div className="flex gap-2 w-full">
-			<div className="flex justify-around w-full">
+		<div className="mt-5 md:mt-0 w-full">
+			<div className="flex gap-2 md:justify-around w-full">
 				<div className="flex gap-2">
 					<StatusFilter
 						selectedStatus={filters.status}

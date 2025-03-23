@@ -223,9 +223,9 @@ export default function SettingsForm() {
 							Manage your account settings.
 						</h5>
 					</header>
-					<div className="flex">
-						<aside className="w-1/5 mt-3">
-							<ul className="flex flex-col">
+					<div className="flex flex-col md:flex-row">
+						<aside className="w-full md:w-1/5 mt-3">
+							<ul className="flex md:flex-col flex-row gap-2 mb-10 md:mb-0">
 								{Object.keys(sections).map((section) => (
 									<li
 										key={section}
