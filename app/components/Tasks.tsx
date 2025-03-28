@@ -345,7 +345,7 @@ export default function Tasks() {
 		<div key="task-1" className="scrollbar">
 			<CodeViewer componentCode={componentCode} />
 
-			<div className="relative w-3/4 mx-auto mt-10 p-4 bg-primary rounded-md shadow-md">
+			<div className="relative w-full md:w-3/4 mx-auto mt-10 p-4 bg-primary rounded-md shadow-md">
 				<h1 className="text-2xl font-bold text-gray-100 mb-4">Task Manager</h1>
 
 				<div className="md:flex gap-2 mb-4 items-center">

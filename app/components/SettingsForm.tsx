@@ -185,7 +185,7 @@ export default function SettingsForm() {
 						<span className="text-neutral-400 text-xs">Confirm your password.</span>
 					</label>
 					<div className="w-full flex justify-end">
-						<button className="mt-5 px-10 py-2 rounded-lg bg-primary hover:bg-hover text-white border border-gray-700 hover:text-gray-200 transition-all duration-300">
+						<button className="mt-10 md:mt-5 px-10 py-2 rounded-lg bg-primary hover:bg-hover text-white border border-gray-700 hover:text-gray-200 transition-all duration-300">
 							Save
 						</button>
 					</div>
@@ -238,7 +238,7 @@ export default function SettingsForm() {
 								))}
 							</ul>
 						</aside>
-						<div className="w-4/5 px-6 rounded-lg">
+						<div className="md:w-4/5 px-6 rounded-lg">
 							{sections[activeSection]}
 						</div>
 					</div>
